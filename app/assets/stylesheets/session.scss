@@ -1,0 +1,26 @@
+// Place all the styles related to the Session controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#top_banner {
+  background: url(image_path('background.jpg')) no-repeat;
+  background-size: 100%;
+  height: 500px;
+  border: 1px silver solid;
+}
+#info_1 {
+  background: url(image_path('pikes.jpg')) no-repeat;
+  height: 300px;
+  margin: 250px 0 0 20px;
+}
+
+#info_2 {
+  background: url(image_path('coffee.jpg')) no-repeat right top;
+  height: 300px;
+  margin: 150px 0 0 20px;
+}
+#info_3 {
+  background: url(image_path('kayak.jpg')) no-repeat;
+  height: 300px;
+  margin: 150px 0 0 20px;
+}
