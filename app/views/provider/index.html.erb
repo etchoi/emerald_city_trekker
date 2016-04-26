@@ -1,0 +1,12 @@
+<div class="container">
+  <h3> Hi <%= @providers.name %>!</h3>
+  <div id="profile">
+    <span><%= image_tag @providers.profile_pic.url (:small) %></span>
+    <p>Provider Name: <b><%= @providers.name %> </b></p>
+    <p>Email: <b><%= @providers.email %></b></p>
+    <p>About: <b><%= @providers.about %></b></p>
+  </div>
+
+  <div id="pending"></div>
+  <div id="past_tours"></div>
+</div>

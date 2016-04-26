@@ -4,16 +4,21 @@
       <div class="nav navbar-nav">
         <a class="navbar-brand" href="#">Navbar</a>
         <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link" href="#">Provider Login</a>
+        <a class="nav-item nav-link" href="/provider/new">Provider Login</a>
         <a class="nav-item nav-link" href="#">About</a>
       </div>
   </nav>
   </div>
 
-  <div id="top_banner">
+  <div id="top_banner" class="col-md-12">
     <div id="fb_login">
-        <%= link_to 'Login to Facebook', @auth_url, :class=>"btn btn-primary" %>
+      <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false">
+        <%= link_to 'Continue with Facebook', @auth_url, :class=>"btn btn-primary" %>
+        <!-- Fix this button -->
+
+        <button class="btn btn-warning btn-sm" id="find_tour" type="button" action="/tour" name="find_tour"><a href="/tour">Find a Tour</a></button>
       </div>
+    </div>
   </div>
 
   <div id="info_1"></div>

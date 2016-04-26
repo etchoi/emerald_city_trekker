@@ -1,0 +1,30 @@
+<div class=" container container-fluid">
+  <% (notice.kind_of?(Array) ? notice : [notice]).each do |x| %>
+     <p><%= x %></p>
+  <% end %>
+
+<div id="registration" class="col-md-6">
+  <h5>Not a registered Provider? Register here!</h5>
+  <%= simple_form_for @provider, :url => '/provider', :html => {:multipart => true} do |f| %>
+     <%= f.input :name, label: 'Name: ' %>
+     <%= f.input :email, label: 'Email: ' %>
+     <%= f.input :password, label: 'Password: ', input_html: { maxlength: 20 } %>
+     <%= f.input :password_confirmation, label: 'Confirm Password: ' %>
+     <%= f.file_field :profile_pic %><br>
+     <%= f.submit :submit, label_html: { class: 'btn btn-success' } %>
+  <% end %>
+</div>
+
+  <div id="login" class="col-md-6">
+    <h5>Login Here</h5>
+    <form action="/session" method="post">
+      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+      <label for="login_email">Email</label>
+      <input type="text" id="login_email" name=login[email]><br>
+      <label for="login_password">Password</label>
+      <input type="password" id="login_password" name=login[password]><br>
+      <input type="submit" class="btn btn-success" value="Login">
+    </form>
+  </div>
+
+</div>
