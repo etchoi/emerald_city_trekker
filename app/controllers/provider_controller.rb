@@ -1,6 +1,7 @@
 class ProviderController < ApplicationController
   def index
     @providers = Provider.find(session[:provider])
+    @tours = Tour.where(provider_id:session[:provider])
   end
 
   def show

@@ -1,10 +1,34 @@
 <div class="container">
   <h3> Hi <%= @providers.name %>!</h3>
+
   <div id="profile">
     <span><%= image_tag @providers.profile_pic.url (:small) %></span>
     <p>Provider Name: <b><%= @providers.name %> </b></p>
     <p>Email: <b><%= @providers.email %></b></p>
     <p>About: <b><%= @providers.about %></b></p>
+  </div>
+
+  <% (notice.kind_of?(Array) ? notice : [notice]).each do |x| %>
+     <p><b><%= x %></b></p>
+  <% end %>
+
+  <div id="new_tour">
+    <form action="/tour" method="post">
+      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+      <input type="hidden" name=tour[provider_id] value="<%= session[:provider] %>">
+      <label for="name">Name: </label>
+      <input type="text" id="name" name=tour[name]><br>
+      <label for="description">Description: </label>
+      <textarea name=tour[description] rows="4" cols="30"></textarea><br>
+      <label for="category">Category: </label>
+      <select id="category" name=tour[category]>
+        <option value="food_and_drink">Food and Drink</option>
+        <option value="neighborhood_tours">Neighborhood Tours</option>
+        <option value="water_sports">Water Sports</option>
+        <option value="landmark">Landmark</option>
+      </select><br>
+      <input type="submit" class="btn btn-success" value="Create Tour">
+    </form>
   </div>
 
   <div id="pending"></div>
