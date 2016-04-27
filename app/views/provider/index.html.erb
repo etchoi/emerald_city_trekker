@@ -1,6 +1,8 @@
 <div class="container">
   <a href="/">Home</a> | <a href="/provider/destroy">Logout</a>
-  <h3> Hi <%= @providers.name %>!</h3>
+
+  <div id="provider_container">
+  <h3 id="welcome"> Hi <%= @providers.name %>!</h3>
 
   <div id="profile">
     <span><%= image_tag @providers.profile_pic.url (:small) %></span>
@@ -9,13 +11,37 @@
     <p>About: <b><%= @providers.about %></b></p>
   </div>
 
-  <div id="pending"></div>
+  <div id="pending">
+    <% if @pending %>
+    <table id="request">
+      <tr>
+        <th>Request Details</th>
+        <th>Action</th>
+      </tr>
+      <% @pending.each do |x| %>
+        <tr>
+          <td><%= x.user.first_name %> from <%= x.user.city %>, <%= x.user.country %> requested your <%= x.tour.name %> tour for <%= x.tour_date.strftime('%B %e, %Y') %></td>
+          <td>
+            <a href="/reservation">Accept</a> |
+            <form action="/reservation" method="post">
+
+            </form>
+            |
+            <form action="/reservation/destroy/<%= x.id %>" method="post">
+              <button type="submit" name="button">Decline</button>
+            </form>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+    <% end %>
+  </div>
 
   <% (notice.kind_of?(Array) ? notice : [notice]).each do |x| %>
      <p><b><%= x %></b></p>
   <% end %>
 
-<div id="tour_record">
+<div id="active_tours">
   <h4>Your Active Tours</h4>
   <div id="new_tour">
     <%= simple_form_for @tour, :url => '/tour', :html => {:multipart => true} do |f| %>
@@ -54,4 +80,5 @@
 </div>
 
   <div id="past_tours">Past Tours</div>
+</div>
 </div>

@@ -3,6 +3,7 @@ class ProviderController < ApplicationController
     @providers = Provider.find(session[:provider])
     @tour = Tour.new
     @tours = Tour.where(provider_id:session[:provider])
+    @pending = Request.joins(:user).joins(:tour).where(provider_id:session[:provider])
   end
 
   def show

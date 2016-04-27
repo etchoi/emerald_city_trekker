@@ -42,7 +42,7 @@
                   <div id="inner_body">
                     Guide's Name: <h6><%= x.provider.name %></h6>
                     Description: <h6><%= x.description %></h6>
-                    <form action="/tour/reserve" method="post">
+                    <form action="/reservation" method="post">
                       <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
                       <input type="hidden" name=reserve[provider] value="<%= x.provider.id %>">
                       <input type="hidden" name=reserve[tour] value="<%= x.id %>">

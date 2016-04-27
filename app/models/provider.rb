@@ -1,7 +1,9 @@
 class Provider < ActiveRecord::Base
   has_secure_password
-  has_many :tours
-  has_many :scheduled_tours, through: :tours, source: :scheduled
+  has_many :tours, dependent: :destroy
+  has_many :requesteds, dependent: :destroy
+  has_many :scheduleds, dependent: :delete_all
+  has_many :scheduled_tours, through: :tours, source: :scheduled, dependent: :destroy
 
 
   has_attached_file :profile_pic, :styles => {

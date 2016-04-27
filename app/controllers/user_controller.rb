@@ -5,7 +5,7 @@ class UserController < ApplicationController
 
   def show
     @user = User.find(session[:user])
-    @tours = Scheduled.joins(:tour).joins(:provider).where(user_id:session[:user])
+    @tours = Request.joins(:tour).joins(:provider).where(user_id:session[:user])
 
   end
 

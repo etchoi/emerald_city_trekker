@@ -3,12 +3,13 @@ Rails.application.routes.draw do
   root 'session#index'
   post '/user/user_login' => 'user#user_login'
   post '/provider/provider_login' => 'provider#provider_login'
-  post '/tour/reserve' => 'tour#reserve'
+  post '/reservation/destroy/:id' => 'reservation#destroy'
   get '/user/destroy' => 'user#destroy'
   get '/provider/destroy' => 'provider#destroy'
   get '/tour/destroy/:id' => 'tour#destroy'
   resources :session
   resources :user
+  resources :reservation
   resources :provider
   resources :tour
 
