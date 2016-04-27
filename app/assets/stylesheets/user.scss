@@ -10,14 +10,15 @@
 #profile {
   display: inline-block;
   vertical-align: top;
-  width: 25%;
+  max-width: 30%;
   height: 100%;
 }
 #upcoming_tours {
   display: inline-block;
-  width: 70%;
+  min-width: 65%;
   height: 100%;
+  margin-left: 2%;
 }
 #upcoming_tours table {
-  width: 100%;
+  min-width: 100%;
 }

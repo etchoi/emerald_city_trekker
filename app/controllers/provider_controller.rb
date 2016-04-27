@@ -4,6 +4,7 @@ class ProviderController < ApplicationController
     @tour = Tour.new
     @tours = Tour.where(provider_id:session[:provider])
     @pending = Request.joins(:user).joins(:tour).where(provider_id:session[:provider])
+    @scheduled = Scheduled.joins(:tour).where(provider_id:session[:provider])
   end
 
   def show

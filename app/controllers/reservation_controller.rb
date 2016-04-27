@@ -1,16 +1,5 @@
 class ReservationController < ApplicationController
   def index
-    Request.find(params[:id]).delete
-    @scheduled = Scheduled.new(tour_date: , user_id: , provider_id: , tour_id: )
-    respond_to do |format|
-      if @reserve.save
-        format.html { redirect_to "/tour", notice: 'We sent a request to ' + params[:reserve][:name] + '. We will let you know when ' + params[:reserve][:name] + ' replies to your request.' }
-        format.json { render :show, status: :created, location: "/user"}
-      else
-        format.html { redirect_to '/tour', notice: @new_tour.errors.full_messages}
-        format.json { render json: @new_tour.errors, status: :unprocessable_entity }
-      end
-    end
 
   end
 
@@ -31,6 +20,20 @@ class ReservationController < ApplicationController
         format.json { render :show, status: :created, location: "/user"}
       else
         format.html { redirect_to '/tour', notice: @new_tour.errors.full_messages}
+        format.json { render json: @new_tour.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def reserve
+    Request.find(params[:id]).delete
+    @scheduled = Scheduled.new(tour_date:params[:schedule][:tour_date], user_id:params[:schedule][:user_id], provider_id:params[:schedule][:provider_id], tour_id:params[:schedule][:tour_id])
+    respond_to do |format|
+      if @scheduled.save
+        format.html { redirect_to "/provider", notice: 'Tour date confirmed!' }
+        format.json { render :show, status: :created, location: "/user"}
+      else
+        format.html { redirect_to '/provider', notice: @new_tour.errors.full_messages}
         format.json { render json: @new_tour.errors, status: :unprocessable_entity }
       end
     end

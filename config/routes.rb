@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post '/user/user_login' => 'user#user_login'
   post '/provider/provider_login' => 'provider#provider_login'
   post '/reservation/destroy/:id' => 'reservation#destroy'
+  post '/reservation/reserve/:id' => 'reservation#reserve'
   get '/user/destroy' => 'user#destroy'
   get '/provider/destroy' => 'provider#destroy'
   get '/tour/destroy/:id' => 'tour#destroy'

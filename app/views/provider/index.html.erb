@@ -12,28 +12,42 @@
   </div>
 
   <div id="pending">
-    <% if @pending %>
-    <table id="request">
-      <tr>
-        <th>Request Details</th>
-        <th>Action</th>
-      </tr>
+  <% if @pending %>
+    <div class="row" id="pending_row">
       <% @pending.each do |x| %>
-        <tr>
-          <td><%= x.user.first_name %> from <%= x.user.city %>, <%= x.user.country %> requested your <%= x.tour.name %> tour for <%= x.tour_date.strftime('%B %e, %Y') %></td>
-          <td>
-            <a href="/reservation">Accept</a> |
-            <form action="/reservation" method="post">
-
-            </form>
-            |
-            <form action="/reservation/destroy/<%= x.id %>" method="post">
-              <button type="submit" name="button">Decline</button>
-            </form>
-          </td>
-        </tr>
+      <div class="col-sm-6 col-md-4" id="each_pending_row">
+        <div class="thumbnail">
+          <div class="caption">
+            <h3><%= x.tour.name %> </h3>
+            <p><%= x.user.first_name %> from <%= x.user.city %>, <%= x.user.country %> requested your <%= x.tour.name %> tour for <%= x.tour_date.strftime('%B %e, %Y') %></p>
+            <p>
+              <form action="/reservation/reserve/<%= x.id %>" method="post" id="accept">
+              <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+              <input type="hidden" name=schedule[tour_date] value="<%= x.tour_date %>">
+              <input type="hidden" name=schedule[user_id] value="<%= x.user_id %>">
+              <input type="hidden" name=schedule[provider_id] value="<%= x.provider_id %>">
+              <input type="hidden" name=schedule[tour_id] value="<%= x.tour_id %>">
+              <button type="submit" class="btn btn-success-outline btn-sm">Accept</button>
+              </form>
+              <form action="/reservation/destroy/<%= x.id %>" method="post" id="decline" >
+                <button type="submit" class="btn btn-danger-outline btn-sm">Decline</button>
+              </form>
+            </p>
+          </div>
+        </div>
+      </div>
       <% end %>
-    </table>
+    </div>
+    <% end %>
+  </div>
+
+  <div id="scheduled_tours">
+    <h3>Confirmed Tours</h3>
+    <% if @scheduled %>
+      <% @scheduled.each do |y| %>
+        <p><%= y.tour.name %>,
+        <%= y.tour_date %> </p>
+      <% end %>
     <% end %>
   </div>
 
