@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'session#index'
   post '/user/user_login' => 'user#user_login'
   post '/provider/provider_login' => 'provider#provider_login'
+  post '/tour/reserve/:id' => 'tour#reserve'
   get '/user/destroy' => 'user#destroy'
   get '/provider/destroy' => 'provider#destroy'
   get '/tour/destroy/:id' => 'tour#destroy'

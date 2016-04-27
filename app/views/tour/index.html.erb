@@ -36,18 +36,18 @@
                 </div>
                 <div class="modal-body" id="modal_body">
                   <img src="<%= x.provider.profile_pic.url (:small) %>">
-                  <%= x.provider.name %>
-                  <%= x.description %>
-                  <div class="input-group date" data-provide="datepicker">
-                      <input type="text" class="form-control">
-                      <div class="input-group-addon">
-                          <span class="glyphicon glyphicon-th"></span>
-                      </div>
+                  <div id="inner_body">
+                    Guide's Name: <h6><%= x.provider.name %></h6>
+                    Description: <h6><%= x.description %></h6>
+                    <form action="/tour/reserve/<%= x.provider.id %>" method="post">
+                      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+                      <input type="date" name=reserve[date]>
                   </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-success">Request Tour</button>
+                  <button type="submit" class="btn btn-success">Request Tour</button>
+                  </form>
                 </div>
               </div>
             </div>

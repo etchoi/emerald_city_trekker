@@ -16,6 +16,10 @@ class TourController < ApplicationController
   def edit
   end
 
+  def reserve
+    render json:reserve_params
+  end
+
   def create
     @new_tour = Tour.new(tour_params)
     respond_to do |format|
@@ -40,5 +44,8 @@ class TourController < ApplicationController
   private
   def tour_params
     params.require(:tour).permit(:name, :description, :category, :provider_id, :tour_pic)
+  end
+  def reserve_params
+    params.require(:reserve).permit(:date)
   end
 end
