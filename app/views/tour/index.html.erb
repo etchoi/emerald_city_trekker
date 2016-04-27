@@ -1,2 +1,62 @@
 <h1>Tour#index</h1>
 <p>Find me in app/views/tour/index.html.erb</p>
+<div class="container">
+  <% if @all_tours %>
+  <div class="row">
+
+    <% @all_tours.each do |x| %>
+    <div class="col-sm-4">
+      <div class="card" >
+        <div class="card-header" id="card-header">
+          <% if x.category == "food_and_drink"%>
+            <h6><%= "Food and Drink" %></h6>
+          <% elsif x.category == "water_sports" %>
+            <h6><%= "Water Sports" %></h6>
+          <% elsif x.category == "neighborhood_tours" %>
+            <h6><%= "Neighborhood Tours" %></h6>
+          <% else %>
+            <h6><%= "Famous Landmarks" %></h6>
+          <% end %>
+        </div>
+        <img class="card-img-top" src="<%= x.tour_pic.url (:medium) %>" alt="Card image cap">
+        <div class="card-block">
+          <h4 class="card-title"><%= x.name %></h4>
+          <p class="card-text"><%= x.description %></p>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#myModal-<%= x.id%>">
+            Book a tour
+          </button>
+          <!-- Modal -->
+          <div class="modal fade" id="myModal-<%= x.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel"><%= x.name %></h4>
+                </div>
+                <div class="modal-body" id="modal_body">
+                  <img src="<%= x.provider.profile_pic.url (:small) %>">
+                  <%= x.provider.name %>
+                  <%= x.description %>
+                  <div class="input-group date" data-provide="datepicker">
+                      <input type="text" class="form-control">
+                      <div class="input-group-addon">
+                          <span class="glyphicon glyphicon-th"></span>
+                      </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-success">Request Tour</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+
+  </div>
+  <% end %>
+</div>

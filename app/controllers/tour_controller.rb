@@ -1,6 +1,10 @@
 class TourController < ApplicationController
   def index
-
+    @all_tours = Tour.all
+    @food_and_drink = Tour.joins(:provider).where(category:"food_and_drink")
+    @water_sports = Tour.joins(:provider).where(category:"water_sports")
+    @neighborhood_tours = Tour.joins(:provider).where(category:"neighborhood_tours")
+    @landmarks = Tour.joins(:provider).where(category:"landmarks")
   end
 
   def show
@@ -29,10 +33,12 @@ class TourController < ApplicationController
   end
 
   def destroy
+    Tour.find(params[:id]).destroy
+    redirect_to '/provider'
   end
 
   private
   def tour_params
-    params.require(:tour).permit(:name, :description, :category, :provider_id)
+    params.require(:tour).permit(:name, :description, :category, :provider_id, :tour_pic)
   end
 end

@@ -1,4 +1,5 @@
 <div class="container">
+  <a href="/">Home</a> | <a href="/provider/destroy">Logout</a>
   <h3> Hi <%= @providers.name %>!</h3>
 
   <div id="profile">
@@ -8,29 +9,49 @@
     <p>About: <b><%= @providers.about %></b></p>
   </div>
 
+  <div id="pending"></div>
+
   <% (notice.kind_of?(Array) ? notice : [notice]).each do |x| %>
      <p><b><%= x %></b></p>
   <% end %>
 
+<div id="tour_record">
+  <h4>Your Active Tours</h4>
   <div id="new_tour">
-    <form action="/tour" method="post">
-      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-      <input type="hidden" name=tour[provider_id] value="<%= session[:provider] %>">
-      <label for="name">Name: </label>
-      <input type="text" id="name" name=tour[name]><br>
-      <label for="description">Description: </label>
-      <textarea name=tour[description] rows="4" cols="30"></textarea><br>
-      <label for="category">Category: </label>
-      <select id="category" name=tour[category]>
-        <option value="food_and_drink">Food and Drink</option>
-        <option value="neighborhood_tours">Neighborhood Tours</option>
-        <option value="water_sports">Water Sports</option>
-        <option value="landmark">Landmark</option>
-      </select><br>
-      <input type="submit" class="btn btn-success" value="Create Tour">
-    </form>
+    <%= simple_form_for @tour, :url => '/tour', :html => {:multipart => true} do |f| %>
+       <%= f.input :provider_id, :as => :hidden, :input_html => { :value => session[:provider] } %>
+       <%= f.input :name, label: 'Name: ' %>
+       <%= f.input :description, label: 'Description: ' %>
+       <%= f.select :category, [['Food and drink','food_and_drink'],['Neighborhood Tours','neighborhood_tours'],['Water Sports','water_sports'],['Landmarks','landmarks']] %>
+       <%= f.file_field :tour_pic %><br>
+       <%= f.submit :submit, label_html: { class: 'btn btn-success' } %>
+    <% end %>
   </div>
 
-  <div id="pending"></div>
-  <div id="past_tours"></div>
+  <div id="offered_tours">
+    <% if @tours %>
+    <table class="table">
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Category</th>
+          <th>Times purchased</th>
+        </tr>
+      <% @tours.each do |x| %>
+        <tr>
+          <td><%= image_tag x.tour_pic.url (:small) %></td>
+          <td><%= x.name %></td>
+          <td><%= x.description %></td>
+          <td><%= x.category %></td>
+          <td>(add tours given)</td>
+          <td><a href="/tour/destroy/<%= x.id %>">Remove Tour</a>
+        </tr>
+      <% end %>
+    <% end %>
+    </table>
+  </div>
+</div>
+
+  <div id="past_tours">Past Tours</div>
 </div>

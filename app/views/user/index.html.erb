@@ -1,7 +1,21 @@
-<div id="profile">
-   <h3>Hi <%= @profile["name"] %>! Ready to explore Seattle?</h3>
-   <img src='https://graph.facebook.com/<%= @profile["id"] %>/picture' alt='picture'>
-   <div class="profile_info">
-
-   </div>
+<div class="container">
+<% (notice.kind_of?(Array) ? notice : [notice]).each do |x| %>
+   <p><b><%= x %></b></p>
+<% end %>
+  <a href="/">Home</a>
+  <div id="user_register">
+    <h4>Register here!</h4>
+     <%= simple_form_for @user, :url => '/user', :html => {:multipart => true} do |f| %>
+        <%= f.input :user_name, label: 'User name: ' %>
+        <%= f.input :first_name, label: 'First name: ' %>
+        <%= f.input :city, label: 'Home city and country: ' %>
+        <%= f.country_select(:country, {selected: @user.country}, {class: "form-control"}) %>
+        <%= f.input :email, label: 'Email: ' %>
+        <%= f.input :about, label: 'About me: ' %>
+        <%= f.input :password, label: 'Password: ', input_html: { maxlength: 20 } %>
+        <%= f.input :password_confirmation, label: 'Confirm Password: ' %>
+        <%= f.file_field :profile_pic %><br>
+        <%= f.submit :submit, label_html: { class: 'btn btn-success' } %>
+     <% end %>
+  </div>
 </div>

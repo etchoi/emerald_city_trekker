@@ -1,26 +1,48 @@
 <div class="container">
-  <div class="header">
-    <nav class="navbar navbar-light bg-faded">
-      <div class="nav navbar-nav">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link" href="/provider/new">Provider Login</a>
-        <a class="nav-item nav-link" href="#">About</a>
-      </div>
-  </nav>
-  </div>
-
+</div>
   <div id="top_banner" class="col-md-12">
-    <div id="fb_login">
-      <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false">
-        <%= link_to 'Continue with Facebook', @auth_url, :class=>"btn btn-primary" %>
-        <!-- Fix this button -->
-
-        <button class="btn btn-warning btn-sm" id="find_tour" type="button" action="/tour" name="find_tour"><a href="/tour">Find a Tour</a></button>
+    <div class="collapse" id="exCollapsingNavbar">
+    <div id="collap_menu" class="bg-inverse p-a-1">
+      <h6>Login</h6>
+      <span class="text-muted">
+        <% (notice.kind_of?(Array) ? notice : [notice]).each do |x| %>
+           <p><b><%= x %></b></p>
+        <% end %>
+        <form class="form-inline" action="/user/user_login" method="post">
+          <div class="form-group">
+            <label class="sr-only" for="exampleInputEmail3">Email address</label>
+            <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+            <input type="email" class="form-control" id="login[email]" name="login[email]" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <label class="sr-only" for="exampleInputPassword3">Password</label>
+            <input type="password" class="form-control" id="password" name="login[password]" placeholder="Password">
+          </div>
+          <button type="submit" class="btn btn-primary">Sign in</button>
+        </form>
+      <div id="hyperlinks">
+        <span id="register"></span>
+        <a class="nav-item nav-link" href="/user"><h6>Register  |</h6></a>
+        <a class="nav-item nav-link" href="/provider/new"><h6>  Provider Login   |</h6> </a>
+        <a class="nav-item nav-link" href="#"><h6>   About</h6></a></span>
       </div>
     </div>
   </div>
+  <nav id="menu_bar" class="navbar navbar-light bg-faded">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+      &#9776;
+    </button>
+  </nav>
+  </div>
+<div class="container">
+  <div id="fb_login">
+    <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false">
+      <%= link_to 'Continue with Facebook', @auth_url, :class=>"btn btn-primary" %>
+      <!-- Fix this button -->
 
+      <button class="btn btn-warning btn-sm" id="find_tour" type="button" action="/tour" name="find_tour"><a href="/tour">Find a Tour</a></button>
+    </div>
+  </div>
   <div id="info_1"></div>
 
   <div id="info_2"></div>

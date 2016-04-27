@@ -1,2 +1,19 @@
 <h1>User#show</h1>
 <p>Find me in app/views/user/show.html.erb</p>
+<h6><a href="/">Home</a> | <a href="/user/destroy">Logout</a>
+</h6>
+<div class="container">
+  <div id="top_bar">
+    <h4>Hi <%= @user.user_name %>! Ready to explore Seattle?</h4>
+    <div id="profile">
+      <span><%= image_tag @user.profile_pic.url (:small) %></span>
+      <p>Provider Name: <b><%= @user.user_name %> </b></p>
+      <p>Email: <b><%= @user.email %></b></p>
+      <p>About: <b><%= @user.about %></b></p>
+    </div>
+  </div>
+
+  <div id="find_tour">
+    <button class="btn btn-warning btn-sm" id="find_tour" type="button" action="/tour" name="find_tour"><a href="/tour">Find a Tour</a></button>
+  </div>
+</div>

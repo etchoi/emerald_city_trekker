@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160426162056) do
+ActiveRecord::Schema.define(version: 20160426220844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,8 +35,12 @@ ActiveRecord::Schema.define(version: 20160426162056) do
     t.text     "description"
     t.string   "category"
     t.integer  "provider_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.string   "tour_pic_file_name"
+    t.string   "tour_pic_content_type"
+    t.integer  "tour_pic_file_size"
+    t.datetime "tour_pic_updated_at"
   end
 
   add_index "tours", ["provider_id"], name: "index_tours_on_provider_id", using: :btree
@@ -49,8 +53,12 @@ ActiveRecord::Schema.define(version: 20160426162056) do
     t.string   "email"
     t.text     "about"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "profile_pic_file_name"
+    t.string   "profile_pic_content_type"
+    t.integer  "profile_pic_file_size"
+    t.datetime "profile_pic_updated_at"
   end
 
   add_foreign_key "tours", "providers"
