@@ -17,7 +17,17 @@ class TourController < ApplicationController
   end
 
   def reserve
-    render json:reserve_params
+    # render json:params[:reserve]
+    @reserve = Scheduled.new(tour_date:params[:reserve][:tour_date],user_id:session[:user],provider_id:params[:reserve][:provider], tour_id:params[:reserve][:tour])
+    respond_to do |format|
+      if @reserve.save
+        format.html { redirect_to "/tour", notice: 'We sent a request to ' + params[:reserve][:name] + '. We will let you know when ' + params[:reserve][:name] + ' replies to your request.' }
+        format.json { render :show, status: :created, location: "/user"}
+      else
+        format.html { redirect_to '/tour', notice: @new_tour.errors.full_messages}
+        format.json { render json: @new_tour.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def create
@@ -46,6 +56,6 @@ class TourController < ApplicationController
     params.require(:tour).permit(:name, :description, :category, :provider_id, :tour_pic)
   end
   def reserve_params
-    params.require(:reserve).permit(:date)
+    params.require(:reserve).permit(:tour_date, :provider, :tour, :name)
   end
 end

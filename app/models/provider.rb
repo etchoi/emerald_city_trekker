@@ -1,6 +1,8 @@
 class Provider < ActiveRecord::Base
   has_secure_password
   has_many :tours
+  has_many :scheduled_tours, through: :tours, source: :scheduled
+
 
   has_attached_file :profile_pic, :styles => {
     :large => "500x500!",

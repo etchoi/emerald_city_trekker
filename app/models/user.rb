@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
+  has_many :scheduleds
 
   has_attached_file :profile_pic, :styles => {
     :large => "500x500^",

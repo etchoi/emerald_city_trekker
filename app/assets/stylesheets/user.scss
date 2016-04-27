@@ -7,3 +7,17 @@
   vertical-align: top;
   margin-top: 50px;
 }
+#profile {
+  display: inline-block;
+  vertical-align: top;
+  width: 25%;
+  height: 100%;
+}
+#upcoming_tours {
+  display: inline-block;
+  width: 70%;
+  height: 100%;
+}
+#upcoming_tours table {
+  width: 100%;
+}

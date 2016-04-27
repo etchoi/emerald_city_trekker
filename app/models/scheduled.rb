@@ -1,4 +1,5 @@
 class Scheduled < ActiveRecord::Base
-  belongs_to :traveler
+  belongs_to :user
   belongs_to :provider
+  belongs_to :tour
 end

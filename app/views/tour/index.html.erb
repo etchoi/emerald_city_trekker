@@ -1,9 +1,12 @@
 <h1>Tour#index</h1>
 <p>Find me in app/views/tour/index.html.erb</p>
 <div class="container">
+  <a href="/">Home</a> | <a href="/user/<%= session[:user] %>">Dashboard</a>
+  <% (notice.kind_of?(Array) ? notice : [notice]).each do |x| %>
+     <p><b><%= x %></b></p>
+  <% end %>
   <% if @all_tours %>
   <div class="row">
-
     <% @all_tours.each do |x| %>
     <div class="col-sm-4">
       <div class="card" >
@@ -39,9 +42,12 @@
                   <div id="inner_body">
                     Guide's Name: <h6><%= x.provider.name %></h6>
                     Description: <h6><%= x.description %></h6>
-                    <form action="/tour/reserve/<%= x.provider.id %>" method="post">
+                    <form action="/tour/reserve" method="post">
                       <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-                      <input type="date" name=reserve[date]>
+                      <input type="hidden" name=reserve[provider] value="<%= x.provider.id %>">
+                      <input type="hidden" name=reserve[tour] value="<%= x.id %>">
+                      <input type="hidden" name=reserve[name] value="<%= x.provider.name %>">
+                      <input type="date" name=reserve[tour_date]>
                   </div>
                 </div>
                 <div class="modal-footer">
