@@ -5,7 +5,9 @@ class UserController < ApplicationController
 
   def show
     @user = User.find(session[:user])
-    @tours = Request.joins(:tour).joins(:provider).where(user_id:session[:user])
+    @request = Request.joins(:tour).joins(:provider).where(user_id:session[:user])
+    @scheduled = Scheduled.joins(:user).where(user_id:session[:user])
+
 
   end
 
@@ -19,7 +21,7 @@ class UserController < ApplicationController
     @user = User.find_by(email: params[:login][:email].downcase)
     respond_to do |format|
       if @user && @user.authenticate(params[:login][:password])
-        session[:active] = @user.id
+        session[:user] = @user.id
         format.html { redirect_to "/user/#{@user.id}"}
         format.json { render :show, status: :created, location: "/user/#{@user.id}"}
       else

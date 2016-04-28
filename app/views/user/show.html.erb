@@ -2,7 +2,6 @@
 <p>Find me in app/views/user/show.html.erb</p>
 <div class="container">
   <h6><a href="/">Home</a> | <a href="/user/destroy">Logout</a></h6>
-  <h4>Hi <%= @user.user_name %>! Ready to explore Seattle?</h4>
 
   <div id="dashboard_topbar">
     <div id="profile">
@@ -12,29 +11,87 @@
       <p>About: <b><%= @user.about %></b></p>
     </div>
 
-    <div id="upcoming_tours">
-      <% if @tours %>
-        <table>
-          <tr>
-            <th>Date</th>
-            <th>Name</th>
-            <th>Your Guide</th>
-            <th></th>
-          </tr>
-          <% @tours.each do |x| %>
-            <tr>
-              <td><%= x.tour_date %></td>
-              <td><%= x.tour.name %></td>
-              <td><%= x.provider.name %>
-              <%= image_tag x.provider.profile_pic.url (:small) %></td>
-            </tr>
-          <% end %>
-        </table>
+
+
+
+<div class="pc-tab">
+<input checked="checked" id="tab1" type="radio" name="pct" />
+<input id="tab2" type="radio" name="pct" />
+<input id="tab3" type="radio" name="pct" />
+  <nav>
+    <ul>
+      <li class="tab1">
+        <label for="tab1">Welcome!</label>
+      </li>
+      <li class="tab2">
+        <label for="tab2">Scheduled Tours <span class="badge">(<%= @scheduled.count %>)</span></label>
+      </li>
+      <li class="tab3">
+        <label for="tab3">Pending Requests <span class="badge">(<%= @request.count %>)</span></label>
+      </li>
+    </ul>
+  </nav>
+  <section>
+    <div class="tab1">
+      <h2>Hi <%= @user.first_name %>! Welcome to your dashboard</h2><br>
+      <% if @scheduled %>
+      <p>You have <b><%= @scheduled.count %></b> scheduled tours. Click the tabs above to review your scheduled and pending tours.</p>
+      <% end %>
+      <% if @request %>
+      <p>You also have <b><%= @request.count %></b> tours pending. We'll let you know when your tour guide responds.</p>
       <% end %>
     </div>
-  </div>
+    <div class="tab2">
+      <h4>Your Scheduled Tours</h4>
+      <div id="scheduled_tours">
+        <% if @scheduled %>
+          <table>
+            <tr>
+              <th>Date</th>
+              <th>Name</th>
+              <th>Your Guide</th>
+              <th></th>
+            </tr>
+            <% @scheduled.each do |x| %>
+              <tr>
+                <td><%= x.tour_date.strftime('%B %e, %Y') %></td>
+                <td><%= x.tour.name %></td>
+                <td><%= x.provider.name %>
+                <%= image_tag x.provider.profile_pic.url (:small) %></td>
+              </tr>
+            <% end %>
+          </table>
+        <% end %>
+      </div>
+    </div>
+    <div class="tab3">
+      <h4>Your Pending Tour Requests</h4>
+      <div id="upcoming_tours">
+        <% if @request%>
+          <table>
+            <tr>
+              <th>Date</th>
+              <th>Name</th>
+              <th>Your Guide</th>
+              <th></th>
+            </tr>
+            <% @request.each do |x| %>
+              <tr>
+                <td><%= x.tour_date.strftime('%B %e, %Y') %></td>
+                <td><%= x.tour.name %></td>
+                <td><%= x.provider.name %>
+                <%= image_tag x.provider.profile_pic.url (:small) %></td>
+              </tr>
+            <% end %>
+          </table>
+        <% end %>
+      </div>
+    </div>
+  </section>
+</div>
+</div>
 
-  <div id="find_tour">
-    <button class="btn btn-warning btn-sm" id="find_tour" type="button" action="/tour" name="find_tour"><a href="/tour">Find a Tour</a></button>
-  </div>
+<div id="find_tour">
+  <button class="btn btn-warning btn-sm" id="find_tour" type="button" action="/tour" name="find_tour"><a href="/tour">Find a Tour</a></button>
+</div>
 </div>
