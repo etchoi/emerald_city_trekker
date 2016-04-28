@@ -1,11 +1,11 @@
-<h1>User#show</h1>
-<p>Find me in app/views/user/show.html.erb</p>
-<div class="container">
+<div id="top_bar" class=".col-md-12">
   <h6><a href="/">Home</a> | <a href="/user/destroy">Logout</a></h6>
+</div>
 
-  <div id="dashboard_topbar">
-    <div id="profile">
-      <span><%= image_tag @user.profile_pic.url (:small) %></span>
+<div id="user_container" class=".col-md-12">
+  <div id="dashboard_topbar" class=".col-md-9">
+    <div id="profile" class=".col-md-3">
+      <p><%= image_tag @user.profile_pic.url (:small) %></p>
       <p>Provider Name: <b><%= @user.user_name %> </b></p>
       <p>Email: <b><%= @user.email %></b></p>
       <p>About: <b><%= @user.about %></b></p>
@@ -14,10 +14,10 @@
 
 
 
-<div class="pc-tab">
-<input checked="checked" id="tab1" type="radio" name="pct" />
-<input id="tab2" type="radio" name="pct" />
-<input id="tab3" type="radio" name="pct" />
+<div class="pc-tab .col-md-9">
+  <input checked="checked" id="tab1" type="radio" name="pct" />
+  <input id="tab2" type="radio" name="pct" />
+  <input id="tab3" type="radio" name="pct" />
   <nav>
     <ul>
       <li class="tab1">
