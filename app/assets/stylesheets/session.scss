@@ -2,39 +2,62 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#top_banner {
-  background: url(image_path('background.jpg')) no-repeat;
-  background-size: 100%;
-  min-height: 510px;
-  border: 1px silver solid;
+#home_jumbo {
+ background: url(image_path('background.jpg')) no-repeat;
+ width: 100%;
+ min-height: 510px;
+ border-radius: 0px;
+ background-size: 100%;
+
 }
 #menu_bar {
-  opacity: 0.2;
+  opacity: 0.4;
   filter: alpha(opacity=40); /* For IE8 and earlier */
   width: 75px;
-  margin-top: 10px;
+  margin: -530px 0 0 20px;
 }
-#collap_menu {
-  width: 600px;
+#exCollapsingNavbar {
+  border-radius: 5px;
+  width: 570px;
+  z-index: 1;
 }
 #hyperlinks {
   margin-top: 20px;
 }
-#find_tour {
-  margin: auto;
+#jumbo_content {
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 60px;
+  width: 50%;
 }
-#info_1 {
-  background: url(image_path('pikes.jpg')) no-repeat;
-  height: 300px;
-  margin: 450px 0 0 20px;
+#jumbo_content {
+  margin-bottom: 10px;
+  z-index: -1;
 }
-#info_2 {
-  background: url(image_path('coffee.jpg')) no-repeat right top;
-  height: 300px;
-  margin: 150px 0 0 20px;
+#jumbo_display {
+  color: #e8e8e8;
 }
-#info_3 {
-  background: url(image_path('kayak.jpg')) no-repeat;
-  height: 300px;
-  margin: 150px 0 0 20px;
+#jumbo_lead {
+  margin-bottom: 50px;
+  color: #e8e8e8;
+}
+
+// TOURS ROW
+.home_body {
+  margin: 530px 0 100px 0;
+}
+#tours_row {
+  margin: 0 auto;
+}
+#tour_image {
+  position: relative;
+  background: rgba(255, 255, 255, 0.9);
+  z-index: -1;
+  border: 1px solid silver;
+}
+#tour_name {
+  color: white;
+  z-index: 1;
+  text-align: center;
+  margin: -170px 0 300px 0;
 }

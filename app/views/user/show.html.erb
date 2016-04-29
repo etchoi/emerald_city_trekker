@@ -3,7 +3,7 @@
 </div>
 
 <div id="user_container" class=".col-md-12">
-  <div id="dashboard_topbar" class=".col-md-9">
+  <div id="dashboard_topbar" class=".col-md-12">
     <div id="profile" class=".col-md-3">
       <p><%= image_tag @user.profile_pic.url (:small) %></p>
       <p>Provider Name: <b><%= @user.user_name %> </b></p>
@@ -14,7 +14,7 @@
 
 
 
-<div class="pc-tab .col-md-9">
+<div id="user_tabs" class="pc-tab .col-md-12">
   <input checked="checked" id="tab1" type="radio" name="pct" />
   <input id="tab2" type="radio" name="pct" />
   <input id="tab3" type="radio" name="pct" />
@@ -56,8 +56,8 @@
               <tr>
                 <td><%= x.tour_date.strftime('%B %e, %Y') %></td>
                 <td><%= x.tour.name %></td>
-                <td><%= x.provider.name %>
-                <%= image_tag x.provider.profile_pic.url (:small) %></td>
+                <td><%= x.provider.name %></td>
+                <td><%= image_tag x.provider.profile_pic.url (:small) %></td>
               </tr>
             <% end %>
           </table>

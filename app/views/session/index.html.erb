@@ -1,7 +1,24 @@
 <div id="top_banner" class="col-md-12">
-  <% (notice.kind_of?(Array) ? notice : [notice]).each do |x| %>
-     <p> <%= x %> </p>
-  <% end %>
+
+  <div class="jumbotron" id="home_jumbo">
+    <% (notice.kind_of?(Array) ? notice : [notice]).each do |x| %>
+       <p> <%= x %> </p>
+    <% end %>
+    <div id="jumbo_content">
+      <h1 class="display-3" id="jumbo_display">Hello, Seattle!</h1>
+      <p class="lead" id="jumbo_lead">Where travelers meet locals.</p>
+      <a class="btn btn-secondary-outline" href="/tour" role="button">Find a tour</a>
+    </div>
+  </div>
+
+  <div class="toggle">
+    <nav id="menu_bar" class="navbar navbar-light bg-faded">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+        &#9776;
+      </button>
+    </nav>
+  </div>
+
   <div class="collapse" id="exCollapsingNavbar">
     <div id="collap_menu" class="bg-inverse p-a-1">
       <h6>Login</h6>
@@ -23,38 +40,29 @@
           <button type="submit" class="btn btn-primary">Sign in</button>
         </form>
 
-      <div id="hyperlinks">
-        <span id="register"></span>
-        <a class="nav-item nav-link" href="/user"><h6>Register  |</h6></a>
-        <a class="nav-item nav-link" href="/provider/new"><h6>  Provider Login   |</h6> </a>
-        <a class="nav-item nav-link" href="#"><h6>   About</h6></a></span>
-      </div>
+        <div id="hyperlinks">
+          <span id="register"></span>
+          <a class="nav-item nav-link" href="/user"><h6>Register  |</h6></a>
+          <a class="nav-item nav-link" href="/provider/new"><h6>  Provider Login   |</h6> </a>
+          <a class="nav-item nav-link" href="#"><h6>   About</h6></a></span>
+        </div>
 
     </div>
   </div>
 
-  <div class="toggle">
-    <nav id="menu_bar" class="navbar navbar-light bg-faded">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
-        &#9776;
-      </button>
-    </nav>
+  <div class="home_body">
+    <div class="row col-md-12" id="tours_row">
+      <% if @all_tours %>
+
+      <% @all_tours.each do |x| %>
+        <div class="col-xs-6 col-md-4">
+            <img id="tour_image" src="<%= x.tour_pic.url (:large) %>" alt="...">
+            <h3 id="tour_name"><%= x.name %></h3>
+        </div>
+      <% end %>
+
+      <% end %>
+    </div>
   </div>
 
-</div>
-
-
-<div id="find_tour">
-  <button class="btn btn-warning btn-sm" id="find_tour" type="button" action="/tour" name="find_tour"><a href="/tour">Find a Tour</a></button>
-</div>
-
-
-<div class="container">
-  <section><div id="info_1"></div></section>
-
-  <section><div id="info_2"></div></section>
-
-  <div id="info_3"><section></section></div>
-
-  <div id="footer"></div>
 </div>

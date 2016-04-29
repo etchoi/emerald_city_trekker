@@ -1,11 +1,6 @@
 class SessionController < ApplicationController
   def index
-    # session[:oauth] = Koala::Facebook::OAuth.new(APP_ID, APP_SECRET, SITE_URL + '/user/index')
-    #   @auth_url =  session[:oauth].url_for_oauth_code(:permissions=>"public_profile")
-    #   puts session.to_s + "<<< session"
-    #   respond_to do |format|
-    #      format.html {  }
-    #   end
+    @all_tours = Tour.last(3)
   end
 
   def show

@@ -15,11 +15,17 @@
  */
 
 @import "bootstrap";
-
-
+@import url(http://fonts.googleapis.com/css?family=Droid+Serif:400,700);
+@import url(http://fonts.googleapis.com/css?family=Raleway:100,400,700);
 
 body {
   background-color: #F7F7F7;
+  margin: 0px;
+  padding: 0px;
+  font-family: "Raleway";
+}
+.top_navbar {
+  margin-top: 5%;
 }
 
 .container {

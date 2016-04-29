@@ -31,11 +31,19 @@
 #upcoming_tours table {
   min-width: 100%;
 }
+#user_tabls {
+  width: 100%;
+}
+#scheduled_tours {
+  width: 100%;
+}
 #top_bar {
   height: 100px;
 }
+#user_tabs{
+  margin-left: 30px;
+}
 // Tab box
-
 .pc-tab > input,
 .pc-tab section > div {
   display: none;
@@ -84,7 +92,7 @@ h1 {
 .pc-tab {
   display: inline-block;
   width: 65%;
-  max-width: 700px;
+  max-width: 100%;
   margin: 0 auto;
   ul {
     list-style: none;
