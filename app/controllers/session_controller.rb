@@ -1,6 +1,6 @@
 class SessionController < ApplicationController
   def index
-    @all_tours = Tour.last(3)
+    @all_tours = Tour.last(4)
   end
 
   def show

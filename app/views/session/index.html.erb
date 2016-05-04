@@ -1,68 +1,57 @@
-<div id="top_banner" class="col-md-12">
+<div id="top_bar" class="container_fluid col-xs-12 col-md-12">
+  <nav id="session_navbar" class="navbar navbar-default col-md-12 ">
+    <div class="container-fluid">
+      <div class="toggle">
+        <nav id="menu_bar" class="navbar navbar-light bg-faded">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+            <div id="ham_icon">
+              &#9776;
+            </div>
+          </button>
+        </nav>
+      </div>
 
-  <div class="jumbotron" id="home_jumbo">
-    <% (notice.kind_of?(Array) ? notice : [notice]).each do |x| %>
-       <p> <%= x %> </p>
-    <% end %>
-    <div id="jumbo_content">
-      <h1 class="display-3" id="jumbo_display">Hello, Seattle!</h1>
-      <p class="lead" id="jumbo_lead">Where travelers meet locals.</p>
-      <a class="btn btn-secondary-outline" href="/tour" role="button">Find a tour</a>
-    </div>
-  </div>
+      <div class="collapse col-xs-6col-md-4" id="exCollapsingNavbar">
+        <div class="bg-inverse p-a-1">
+          <h6>Login</h6>
+          <span class="text-muted">
+            <form class="form-inline" action="/user/user_login" method="post">
+              <div class="form-group">
+                <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+                <label class="sr-only" for="exampleInputEmail3">Email</label>
+                <input type="email" class="form-control input-sm" id="login[email]" name="login[email]" placeholder="Enter email">
+                <label class="sr-only" for="exampleInputPassword3">Password</label>
+                <input type="password" class="form-control input-sm" id="user_password" name="login[password]" placeholder="Password">
+                <button type="submit" class="btn btn-primary">Sign in</button>
+              </div>
+            </form>
 
-  <div class="toggle">
-    <nav id="menu_bar" class="navbar navbar-light bg-faded">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
-        &#9776;
-      </button>
-    </nav>
-  </div>
-
-  <div class="collapse" id="exCollapsingNavbar">
-    <div id="collap_menu" class="bg-inverse p-a-1">
-      <h6>Login</h6>
-      <span class="text-muted">
-
-        <form class="form-inline" action="/user/user_login" method="post">
-
-          <div class="form-group">
-            <label class="sr-only" for="exampleInputEmail3">Email address</label>
-            <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-            <input type="email" class="form-control" id="login[email]" name="login[email]" placeholder="Enter email">
-          </div>
-
-          <div class="form-group">
-            <label class="sr-only" for="exampleInputPassword3">Password</label>
-            <input type="password" class="form-control" id="password" name="login[password]" placeholder="Password">
-          </div>
-
-          <button type="submit" class="btn btn-primary">Sign in</button>
-        </form>
-
-        <div id="hyperlinks">
-          <span id="register"></span>
-          <a class="nav-item nav-link" href="/user"><h6>Register  |</h6></a>
-          <a class="nav-item nav-link" href="/provider/new"><h6>  Provider Login   |</h6> </a>
-          <a class="nav-item nav-link" href="#"><h6>   About</h6></a></span>
+            <div id="hyperlinks">
+              <span id="register"></span>
+              <a class="nav-item nav-link" href="/user"><h6>Register  |</h6></a>
+              <a class="nav-item nav-link" href="/provider/new"><h6>  Guide Login   |</h6> </a>
+              <a class="nav-item nav-link" href="#"><h6>   About</h6></a>
+            </div>
+          </span>
         </div>
-
+      </div>
     </div>
+  </nav>
+
+  <div id="welcome_msg">
+    <h4 id="msg_1">Hello, Seattle!</h4>
+    <p id="msg_2">Where travelers meet locals.</p>
+    <a id="find_tour" class="btn btn-secondary-outline" href="/tour" role="button">Find a tour</a>
   </div>
-
-  <div class="home_body">
-    <div class="row col-md-12" id="tours_row">
-      <% if @all_tours %>
-
-      <% @all_tours.each do |x| %>
-        <div class="col-xs-6 col-md-4">
-            <img id="tour_image" src="<%= x.tour_pic.url (:large) %>" alt="...">
-            <h3 id="tour_name"><%= x.name %></h3>
-        </div>
-      <% end %>
-
-      <% end %>
-    </div>
-  </div>
-
 </div>
+
+<% if @all_tours %>
+  <div  id="tours_row" class="col-md-12">
+    <% @all_tours.each do |x| %>
+      <div class="col-xs-6 col-md-3">
+        <img class="tour_image" src="<%= x.tour_pic.url (:medium) %>" alt="...">
+        <h5 class="tour_name"><%= x.name %></h5>
+      </div>
+    <% end %>
+  </div>
+<% end %>

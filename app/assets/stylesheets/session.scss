@@ -2,62 +2,61 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#home_jumbo {
- background: url(image_path('background.jpg')) no-repeat;
- width: 100%;
- min-height: 510px;
- border-radius: 0px;
- background-size: 100%;
+#top_bar {
+  background: url(image_path('background.jpg')) no-repeat;
+  background-size: 100%;
+  min-height: 450px;
+}
+  #session_navbar {
+    width: 100%;
+    height: 30%;
+  }
+  #menu_bar {
+    float: right;
+    width: 6.2%;
+    background: rgba(200, 54, 54, 0.0);
+    margin: auto;
+  }
+    #ham_icon {
+      opacity: 0.7;
 
-}
-#menu_bar {
-  opacity: 0.4;
-  filter: alpha(opacity=40); /* For IE8 and earlier */
-  width: 75px;
-  margin: -530px 0 0 20px;
-}
-#exCollapsingNavbar {
-  border-radius: 5px;
-  width: 570px;
-  z-index: 1;
-}
-#hyperlinks {
-  margin-top: 20px;
-}
-#jumbo_content {
-  margin: 0 auto;
-  text-align: center;
-  margin-top: 60px;
-  width: 50%;
-}
-#jumbo_content {
-  margin-bottom: 10px;
-  z-index: -1;
-}
-#jumbo_display {
-  color: #e8e8e8;
-}
-#jumbo_lead {
-  margin-bottom: 50px;
-  color: #e8e8e8;
-}
+    }
+  #exCollapsingNavbar {
+    float: right;
+  }
+      #exCollapsingNavbar input {
+        float: left;
+      }
+      #exCollapsingNavbar button {
+        float: right;
+      }
+      #user_password {
+        margin: 0 3px 0 3px;
+      }
+  #welcome_msg {
+    float: center;
+    text-align: center;
+  }
+  #msg_1 {
+    font-size: 3em;
+    color: #ededed;
+  }
+  #msg_2 {
+    color: #4D4954;
+  }
+  #find_tour {
+    margin-top: 3%;
+    color: #ededed;
+  }
+  
 
-// TOURS ROW
-.home_body {
-  margin: 530px 0 100px 0;
+// ============= Body ==================
+
+.tour_image {
+  margin-top: 15%;
 }
-#tours_row {
-  margin: 0 auto;
-}
-#tour_image {
-  position: relative;
-  background: rgba(255, 255, 255, 0.9);
-  z-index: -1;
-  border: 1px solid silver;
-}
-#tour_name {
-  color: white;
-  z-index: 1;
+.tour_name {
+  margin-top: -40%;
   text-align: center;
-  margin: -170px 0 300px 0;
+  color: #ededed;
 }

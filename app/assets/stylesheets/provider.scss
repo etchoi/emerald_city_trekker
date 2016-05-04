@@ -1,80 +1,48 @@
-// Place all the styles related to the Provider controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
-#welcome {
-  width: 200px;
+#navbar_provider {
+  position: relative;
+  background-color: #B1D877;
+  border-bottom: 2px solid #FFFFFF;
 }
+#navbar_links {
+  list-style-type: none;
+  float: right;
+  margin-top: 1.5%;
+}
+  #navbar_links li {
+    display: inline;
+    font-size: 1.2em;
+  }
+
 #provider_container {
-  margin: 50px 0 100px 0;
   width: 100%;
 }
-#profile_container {
-  width: 70%;
-  border: 1px solid silver;
+
+// ================ Side Menu ======================
+
+#side_menu {
+  background-color: #4D4D4D;
+  height: auto;
+  margin: 8% 0 0 -3%;
+  padding: 1%;
+  border: .5px solid silver;
   border-radius: 5px;
-  margin-top: 5%;
-  padding: 3%;
 }
-  #profile_pic {
-    display: inline-block;
-    max-width: 40%;
-    max-height: 60%;
-    vertical-align: top;
+  #provider_profile {
+    margin: 5% 5% 5% 5%;
   }
-  #profile_content {
-    display: inline-block;
-    width:50%;
+  #provider_content {
+    margin-top: 10%;
+    color: #ededed;
   }
-
-#provider_tabs {
-  width: 100%;
-}
-// PENDING TOURS TAB
-#pending_row {
-  margin: 0 auto;
-  background-color: #F7F7F7;
-}
-  #each_pending_row {
-    border: .5px solid silver;
-    border-radius: 8px;
-    padding-top: 10px;
-    margin: 1.5%;
-    max-width: 30%;
-    display: inline-block;
+  #provider_content p {
+    margin: 0;
   }
-  #accept {
-    display: inline-block;
+  .notifications {
+    margin: 30px 0 30px 10px;
   }
-  #decline {
-    display: inline-block;
+  .notifications button {
+    margin-top: 10px;
+    float: center;
   }
 
-// NEW TOUR TAB
-// #new_tour {
-//   display: inline-block;
-//   width: 30%;
-//   border-radius: 5px;
-//   padding: 30px 20px 20px 20px;
-//   background-color: white;
-// }
-#offered_tours {
-  display: inline-block;
-  vertical-align: top;
-  background-color: white;
-  width: 100%;
-  vertical-align: bottom;
-}
-#image_col {
-  width: 10%;
-}
-// ID's for simple for inputs
-#form_top {
-  display: inline-block;
-}
-#form_bottom {
-  display: inline-block;
-}
-#new_tour_form_split {
-  display: inline-block;
-}
+// ============== Tabs =============================

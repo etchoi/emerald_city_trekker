@@ -8,17 +8,8 @@
 
 </head>
 <body>
-  <!-- This code is for facebook login icon -->
-  <div id="fb-root"></div>
-<%= yield %>
-<script>
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=1584263518554450";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-</script>
+
+  <%= yield %>
+
 </body>
 </html>
