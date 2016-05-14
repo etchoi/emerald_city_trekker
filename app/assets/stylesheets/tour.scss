@@ -1,49 +1,48 @@
 // Place all the styles related to the Tour controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#tour_record{
-  margin-top: 60px;
+
+
+
+#navbar_tour {
+  background-color: silver;
+}
+#tour_container {
+  margin-top: 10%;
 }
 #tour_welcome {
-  margin: 20px 0 40px 0;
+  margin: 10px 0 0 0;
 }
-#tile_row {
-  margin: auto;
+#tour_notice {
+  margin-top: 1%;
+  text-align: center;
 }
 #tour_cards {
-  min-height: 425px;
-  margin: 0 3% 3% 0;
-}
-#book_btn {
-  vertical-align: sub;
+  min-height: 400px;
+  margin: 4% 3% 3% 0;
 }
 #card-header {
   background-color: #FFFFFF;
   text-align: center;
 }
-#modal_body {
-  width: 100%;
-  display: inline-block;
-  border-radius: 15px;
-}
-.modal-dialog {
-  // background: rgb(0, 0, 0);
-  // background: rgba(255, 255, 255, 0.1) ;
-  // opacity: 0.9;
-  // filter: alpha(opacity=80); /* For IE8 and earlier */
-  background-color: rgba(0,0,255,0.5);
-}
+
+// #modal_body {
+//   width: 100%;
+//   display: inline-block;
+//   border-radius: 15px;
+// }
+// .modal-dialog {
+//   // background: rgb(0, 0, 0);
+//   // background: rgba(255, 255, 255, 0.1) ;
+//   // opacity: 0.9;
+//   // filter: alpha(opacity=80); /* For IE8 and earlier */
+//   background-color: rgba(0,0,255,0.5);
+// }
 img {
   border-radius: 0px;
   width: 100%;
 }
-// Stuff with Joy
-// #tile_row {
-//   min-height: 500px;
-// }
-// .tour_tiles{
-//   min-height: 400px;
-// }
+
 #modal_img {
   vertical-align: top;
   width: 20%;
@@ -51,9 +50,17 @@ img {
 }
 #inner_body{
   display: inline-block;
-  width: 70%;
+  width: 75%;
   margin-left: 3%;
 }
-// #modal_body p{
-//   display: inline-block;
-// }
+// // #modal_body p{
+// //   display: inline-block;
+// // }
+
+
+
+// ================== Edit Tour =======================
+
+#edit_tour_form {
+  margin: 20%;
+}

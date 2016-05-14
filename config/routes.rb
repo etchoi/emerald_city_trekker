@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post '/provider/provider_login' => 'provider#provider_login'
   post '/reservation/destroy/:id' => 'reservation#destroy'
   post '/reservation/reserve/:id' => 'reservation#reserve'
+  patch 'tour/pic/:id' => 'tour#update_pic'
   get '/user/destroy' => 'user#destroy'
   get '/provider/destroy' => 'provider#destroy'
   get '/tour/destroy/:id' => 'tour#destroy'

@@ -2,10 +2,15 @@
   <nav id="session_navbar" class="navbar navbar-default col-md-12 ">
     <div class="container-fluid">
       <div class="toggle">
+        <span id="login_error">
+          <% (notice.kind_of?(Array) ? notice : [notice]).each do |x| %>
+             <p><b><%= x %></b></p>
+          <% end %>
+        </span>
         <nav id="menu_bar" class="navbar navbar-light bg-faded">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
             <div id="ham_icon">
-              &#9776;
+              <div class="btn btn-primary-outline btn-sm">Login</div>
             </div>
           </button>
         </nav>
@@ -50,7 +55,7 @@
     <% @all_tours.each do |x| %>
       <div class="col-xs-6 col-md-3">
         <img class="tour_image" src="<%= x.tour_pic.url (:medium) %>" alt="...">
-        <h5 class="tour_name"><%= x.name %></h5>
+        <h4 class="tour_name"><%= x.name %></h4>
       </div>
     <% end %>
   </div>

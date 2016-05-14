@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">
-        <img class ="glyphicon glyphicon-send" alt="Brand" src="...">
+        <%= image_tag('logo.jpg') %>
       </a>
     </div>
     <ul id="navbar_links" class="nav navbar-nav navbar-right">
@@ -14,8 +14,13 @@
 
 <div id="provider_container" class="container col-md-12">
 
-  <div id="side_menu" class="col-xs-6 col-md-4">
+  <% (notice.kind_of?(Array) ? notice : [notice]).each do |x| %>
+     <p><b><%= x %></b></p>
+  <% end %>
+
+  <div id="side_menu" class="col-xs-6 col-md-3">
     <div id="provider_profile">
+      <h3>Hi <%= @providers.name %>!</h3>
       <span id="provider_pic"><%= image_tag @providers.profile_pic.url (:medium) %></span>
       <div id="provider_content">
         <p id="provider_name">Your Provider Name: <b><%= @providers.name %> </b></p>
@@ -32,24 +37,106 @@
         Scheduled Tours <span class="badge">(<%= @scheduled.count %>)</span>
       </button>
     </div>
-
   </div>
 
+  <div class="pc-tab .col-md-9" id="provider_tabs">
+  <input checked="checked" id="tab1" type="radio" name="pct" />
+  <input id="tab2" type="radio" name="pct" />
+  <input id="tab3" type="radio" name="pct" />
+  <nav>
+    <ul>
+      <li class="tab1">
+        <label for="tab1">Confirmed Tours (<%= @scheduled.count %>)</label>
+      </li>
+      <li class="tab2">
+        <label for="tab2">Tour Requests (<%= @pending.count %>)</label>
+      </li>
+      <li class="tab3">
+        <label for="tab3">Your Tours (<%= @tours.count %>)</label>
+      </li>
+    </ul>
+  </nav>
+  <section>
+    <div class="tab1">
+      <div id="scheduled_tours">
+        <h3>Confirmed Tours</h3>
+        <% if @scheduled %>
+          <% @scheduled.each do |y| %>
+            <p><b><%= y.tour_date.strftime('%B %e, %Y') %>: </b> The <%= y.tour.name %> with <%= y.user.first_name%></p>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="tab2">
+      <h4>Requested Tours</h4>
+        <% if @pending %>
+          <div class="row" id="pending_row">
+            <% @pending.each do |x| %>
+            <div class="col-sm-6 col-md-4" id="each_pending_row">
+              <h3><%= x.tour.name %> </h3>
+              <p><%= x.user.first_name %> from <%= x.user.city %>, <%= x.user.country %> requested your <%= x.tour.name %> tour for <%= x.tour_date.strftime('%B %e, %Y') %></p>
+              <p>
+                <form action="/reservation/reserve/<%= x.id %>" method="post" id="accept">
+                <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+                <input type="hidden" name=schedule[tour_date] value="<%= x.tour_date %>">
+                <input type="hidden" name=schedule[user_id] value="<%= x.user_id %>">
+                <input type="hidden" name=schedule[provider_id] value="<%= x.provider_id %>">
+                <input type="hidden" name=schedule[tour_id] value="<%= x.tour_id %>">
+                <button type="submit" class="btn btn-success-outline btn-sm">Accept</button>
+                </form>
+                <form action="/reservation/destroy/<%= x.id %>" method="post" id="decline" >
+                  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+                  <button type="submit" class="btn btn-danger-outline btn-sm">Decline</button>
+                </form>
+              </p>
+            </div>
+            <% end %>
+          </div>
+          <% end %>
+    </div>
+    <div class="tab3">
+        <div id="offered_tours">
+          <% if @tours %>
+          <table class="table">
+              <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Purchased</th>
+              </tr>
+            <% @tours.each do |x| %>
+              <tr>
+                <td id="image_col"><%= image_tag x.tour_pic.url (:large) %></td>
+                <td><%= x.name %></td>
+                <td><%= x.description %></td>
+                <td><%= x.category %></td>
+                <td>(add tours given)</td>
+                <td><a href="/tour/<%= x.id %>/edit">Edit</a> | <a href="/tour/destroy/<%= x.id %>">Remove</a></td>
+              </tr>
+            <% end %>
+          </table>
+          <% end %>
+        </div>
 
-  <div id="new_tours">
-     <h4>Offer New Tour</h4>
-       <div id="new_tour_form">
-         <%= simple_form_for @tour, :url => '/tour', :html => {:multipart => true} do |f| %>
-         <%= f.input :provider_id, :as => :hidden, :input_html => { :value => session[:provider] } %>
-         <%= f.input :name, label: 'Name: ', :input_html => { id: :form_top } %>
-         <%= f.input :description, label: 'Description: ', :input_html => { id: :form_bottom } %>
-         <%= f.select :category, [['Food and drink','Food and Drink'],['Neighborhood Tours','Neighborhood Tours'],['Water Sports','Water Sports'],['Landmarks','Landmarks']] %>
-         <%= f.file_field :tour_pic %><br>
-         <%= f.submit :submit, label_html: { class: 'btn btn-success' } %>
-         <% end %>
-       </div>
-     </div>
+        <div id="new_tours">
+            <h4>Offer New Tour</h4>
+            <div id="new_tour_form">
+              <%= simple_form_for @tour, :url => '/tour', :html => {:multipart => true } do |f| %>
+              <%= f.input :provider_id, :as => :hidden, :input_html => { :value => session[:provider] } %>
+              <%= f.input :name, label: 'Name: ', :input_html => { id: :form_top } %>
+              <%= f.input :description, label: 'Description: ', :input_html => { id: :form_bottom } %>
+              <%= f.select :category, [['Food and drink','Food and Drink'],['Neighborhood Tours','Neighborhood Tours'],['Water Sports','Water Sports'],['Landmarks','Landmarks']], selected: "X" %>
+              <%= f.file_field :tour_pic %><br>
+              <%= f.submit :submit, :html => { class: 'btn btn-success' } %>
+              <% end %>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+</div>
 
-     </div>
 
 </div>

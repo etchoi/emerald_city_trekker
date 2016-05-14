@@ -14,15 +14,19 @@
   }
 
 #provider_container {
-  width: 100%;
+  margin: 0;
+  min-width: 100%;
+  min-height: 100%;
+  background: url(image_path('provider_background.jpg')) no-repeat;
+  background-size: 100%;
 }
 
-// ================ Side Menu ======================
+// ================ Side Menu ====================== //
 
 #side_menu {
   background-color: #4D4D4D;
-  height: auto;
-  margin: 8% 0 0 -3%;
+  max-height: 40%;
+  margin: 8% 0 20% 3%;
   padding: 1%;
   border: .5px solid silver;
   border-radius: 5px;
@@ -46,3 +50,52 @@
   }
 
 // ============== Tabs =============================
+
+#provider_tabs {
+  margin: 8% 0 0 3%;
+}
+
+
+
+// PENDING TOURS TAB
+#pending_row {
+  margin: 0 auto;
+  background-color: #F7F7F7;
+}
+  #each_pending_row {
+    border: .5px solid silver;
+    border-radius: 8px;
+    padding-top: 10px;
+    margin: 1.5%;
+    max-width: 30%;
+    display: inline-block;
+  }
+  #accept {
+    display: inline-block;
+  }
+  #decline {
+    display: inline-block;
+  }
+
+  #offered_tours {
+    display: inline-block;
+    vertical-align: top;
+    background-color: white;
+    width: 100%;
+    vertical-align: bottom;
+  }
+// NEW TOUR TAB
+#new_tour {
+  // display: inline-block;
+  margin-top: 10%;
+  text-align: left;
+  width: 50%;
+  padding: 30px 20px 20px 20px;
+}
+#new_tour__form {
+
+}
+
+// #image_col {
+//   width: 10%;
+// }

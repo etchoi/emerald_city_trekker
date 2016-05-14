@@ -6,34 +6,49 @@
   width: 80%;
   height: 100%;
   margin: 0 auto;
+  margin-top: 20%;
   background-color: #F7F7F7;
   border: 1px solid silver;
   padding: 20px;
-  // margin-bottom: 100px;
 }
+#login_container {
+  margin-top: 20%;
+}
+  #login_container input {
+    text-align: left;
+    margin: 4% 0 4% 0;
+  }
 #user_register {
   width: 300px;
-  vertical-align: top;
-  margin-top: 50px;
+  display: inline-block;
+  text-align: left;
 }
+#user_login {
+  display: inline-block;
+  vertical-align: top;
+}
+  #user_login input {
+    text-align: left;
+    margin: 4% 0 4% 0;
+  }
 #profile {
   display: inline-block;
   vertical-align: top;
   max-width: 30%;
   height: 100%;
 }
-#upcoming_tours {
-  display: inline-block;
-  min-width: 65%;
-  height: 100%;
-  margin-left: 2%;
-}
-#upcoming_tours table {
-  min-width: 100%;
-}
-#user_tabls {
-  width: 100%;
-}
+// #upcoming_tours {
+//   display: inline-block;
+//   min-width: 65%;
+//   height: 100%;
+//   margin-left: 2%;
+// }
+// #upcoming_tours table {
+//   min-width: 100%;
+// }
+// #user_tabls {
+//   width: 100%;
+// }
 #scheduled_tours {
   width: 100%;
 }
@@ -94,6 +109,13 @@ h1 {
   width: 65%;
   max-width: 100%;
   margin: 0 auto;
+  table {
+    font-family: "Raleway";
+    width: 100%;
+  }
+  h4 {
+    font-family: "Raleway";
+  }
   ul {
     list-style: none;
     margin: 0;

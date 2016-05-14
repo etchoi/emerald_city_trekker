@@ -1,2 +1,24 @@
 <h1>Tour#edit</h1>
 <p>Find me in app/views/tour/edit.html.erb</p>
+
+
+<div id="edit_tour_form">
+  <div id="update_profile">
+    <%= simple_form_for @edit_tour, :url => "/tour/#{@update_tour[:id]}", method: :patch, :html => {:multipart => true } do |f| %>
+      <%= f.input :provider_id, :as => :hidden, :input_html => { :value => session[:provider] } %>
+      <%= f.input :name, :input_html => { id: :form_bottom, value: "#{ @update_tour[:name]} " }%>
+      <%= f.input :description, placeholder: 'Tour Description', :input_html => { id: :form_bottom, value: "#{@update_tour[:description]} " } %>
+      <%= f.select :category, [['Food and drink','Food and Drink'],['Neighborhood Tours','Neighborhood Tours'],['Water Sports','Water Sports'],['Landmarks','Landmarks']], selected: "#{@update_tour[:category]}" %>
+      <%= f.submit :submit, :input_html => { class: 'btn btn-success' } %>
+    <% end %>
+  </div>
+
+  <div id="update_pic">
+    <p><%= image_tag @update_tour.tour_pic.url (:small) %></p>
+    <%= simple_form_for @edit_tour, :url => "/tour/pic/#{@update_tour[:id]}", method: :patch, :html => {:multipart => true } do |x| %>
+      <%= x.file_field :change_pic %><br>
+
+      <%= x.submit :submit, :input_html => { class: 'btn btn-success' } %>
+    <% end %>
+  </div>
+</div>

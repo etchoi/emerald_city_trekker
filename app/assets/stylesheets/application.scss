@@ -19,19 +19,18 @@
 @import url(http://fonts.googleapis.com/css?family=Raleway:100,400,700);
 
 body {
+  width: 100%;
   background-color: #F7F7F7;
   margin: 0px;
   padding: 0px;
   font-family: "Raleway";
 }
-.top_navbar {
-  margin-top: 5%;
-}
 
 .container {
   width: 100%;
   height: 100%;
-  margin: 0 auto;
+  margin: 0px;
+  padding: 0px;
   background-color: #F7F7F7;
-  // margin-bottom: 100px;
+  margin-bottom: 100px;
 }

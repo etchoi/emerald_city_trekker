@@ -8,5 +8,8 @@ class Tour < ActiveRecord::Base
     :small => "100x100!"}
   validates_attachment_content_type :tour_pic, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
+  validates :name, :description, :category, presence: true
+
+  validates :tour_pic, presence: { message: "You must include a tour picture." }
 
 end

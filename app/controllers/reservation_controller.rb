@@ -13,14 +13,19 @@ class ReservationController < ApplicationController
   end
 
   def create
-    @reserve = Request.new(tour_date:params[:reserve][:tour_date],user_id:session[:user],provider_id:params[:reserve][:provider], tour_id:params[:reserve][:tour])
-    respond_to do |format|
-      if @reserve.save
-        format.html { redirect_to "/tour", notice: 'We sent a request to ' + params[:reserve][:name] + '. We will let you know when ' + params[:reserve][:name] + ' replies to your request.' }
-        format.json { render :show, status: :created, location: "/user"}
-      else
-        format.html { redirect_to '/tour', notice: @new_tour.errors.full_messages}
-        format.json { render json: @new_tour.errors, status: :unprocessable_entity }
+    if session[:user] == nil
+      flash[:notice] = %Q[Created job number <a href="/tour">Tour</a>]
+      redirect_to "/tour"
+    else
+      @reserve = Request.new(tour_date:params[:reserve][:tour_date],user_id:session[:user],provider_id:params[:reserve][:provider], tour_id:params[:reserve][:tour])
+      respond_to do |format|
+        if @reserve.save
+          format.html { redirect_to "/tour", notice: 'We sent a request to ' + params[:reserve][:name] + '. We will let you know when ' + params[:reserve][:name] + ' replies to your request.' }
+          format.json { render :show, status: :created, location: "/user"}
+        else
+          format.html { redirect_to "/tour", notice: @reserve.errors.full_messages}
+          format.json { render json: @reserve.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -33,8 +38,8 @@ class ReservationController < ApplicationController
         format.html { redirect_to "/provider", notice: 'Tour date confirmed!' }
         format.json { render :show, status: :created, location: "/user"}
       else
-        format.html { redirect_to '/provider', notice: @new_tour.errors.full_messages}
-        format.json { render json: @new_tour.errors, status: :unprocessable_entity }
+        format.html { redirect_to '/provider', notice: @scheduled.errors.full_messages}
+        format.json { render json: @scheduled.errors, status: :unprocessable_entity }
       end
     end
   end

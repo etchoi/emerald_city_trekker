@@ -1,23 +1,33 @@
-<div class="top_navbar">
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/user/<%= session[:user] %>">Dashboard</a></li>
-      </ul>
+<nav id="navbar_tour" class="navbar navbar-default navbar-fixed-top col-md-12">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <%= image_tag('logo.jpg') %>
+      </a>
     </div>
-  </nav>
-</div>
+    <ul id="navbar_links" class="nav navbar-nav navbar-right">
+      <li><a href="/user/<%= session[:user]%>">Dashboard</a></li> |
+      <li><a href="/">Home</a></li> |
+      <li><a href="/user/destroy">Logout</a></li>
+    </ul>
+  </div>
+</nav>
 
-<div class="container">
-  <h1 id="tour_welcome">What do you want to explore today?</h1>
-  <% (notice.kind_of?(Array) ? notice : [notice]).each do |x| %>
-     <h3 style="color:green"><%= x %></h3>
-  <% end %>
+<div id="tour_container" class="container">
 
-  <% if @all_tours %>
+  <div id="tour_top_bar" class="col-xs-12 col-md-12 col-md-offset-1">
+    <h1 id="tour_welcome">What do you want to explore today?</h1>
+    <%= session[:user]%>
+    <% (notice.kind_of?(Array) ? notice : [notice]).each do |x| %>
+       <h5 id="tour_notice" class="col-xs-6 col-md-12" style="color:green"><%= x %></h5>
+    <% end %>
+  </div>
+
+<!-- ====================== Tour Cards ============================ -->
+  <div class="tours_offered  col-md-12 col-md-offset-2">
+    <% if @all_tours %>
     <% @all_tours.each_slice(3) do |three_row| %>
-    <div class="row col-md-12" id="tile_row">
+    <div class="row" id="tile_row">
 
       <% three_row.each do |x| %>
       <!-- tour_tiles -->
@@ -53,7 +63,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel"><%= x.name %></h4>
                     <div id="modal_img" class=".col-md-4">
-                      <img src="<%= x.tour_pic.url (:small) %>">
+                      <img src="<%= x.tour_pic.url (:medium) %>">
                     </div>
                     <div id="inner_body" class=".col-md-8">
                       <h6>Guide's Name: </h6><p><%= x.provider.name %></p>
@@ -78,4 +88,6 @@
     </div>
     <% end %>
   <% end %>
+  </div>
+
 </div>

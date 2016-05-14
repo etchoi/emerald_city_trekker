@@ -32,7 +32,7 @@ class UserController < ApplicationController
   end
 
   def create
-    # render json:params[:user][:profile_pic]
+    render json:params[:user]
     @user = User.new(user_params)
     respond_to do |format|
       if @user.save
@@ -40,7 +40,7 @@ class UserController < ApplicationController
         format.html { redirect_to "/user/#{session[:user]}", notice: 'User was successfully created.' }
           format.json { render :show, status: :created, location: "/provider"}
       else
-        format.html { redirect_to '/user/new', notice: @user.errors.full_messages}
+        format.html { redirect_to '/user', notice: @user.errors.full_messages}
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end

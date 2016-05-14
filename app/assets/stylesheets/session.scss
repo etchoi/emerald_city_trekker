@@ -16,10 +16,13 @@
     width: 6.2%;
     background: rgba(200, 54, 54, 0.0);
     margin: auto;
+    margin-right: 5%;
   }
     #ham_icon {
       opacity: 0.7;
-
+    }
+    #login_error {
+      text-align: right;
     }
   #exCollapsingNavbar {
     float: right;
@@ -48,15 +51,15 @@
     margin-top: 3%;
     color: #ededed;
   }
-  
+
 
 // ============= Body ==================
 
 .tour_image {
-  margin-top: 15%;
+  margin: -10% 0 30% 0;
 }
-.tour_name {
-  margin-top: -40%;
-  text-align: center;
-  color: #ededed;
-}
+  .tour_name {
+    margin-top: -75%;
+    text-align: center;
+    color: #ededed;
+  }

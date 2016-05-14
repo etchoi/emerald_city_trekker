@@ -14,22 +14,31 @@ class TourController < ApplicationController
   end
 
   def edit
+    @edit_tour = Tour.new
+    @update_tour = Tour.find(params[:id])
   end
 
   def create
     @new_tour = Tour.new(tour_params)
     respond_to do |format|
       if @new_tour.save
-        format.html { redirect_to "/provider/#{session[:provder]}", notice: 'Tour was successfully created.' }
+        format.html { redirect_to "/provider", notice: 'Tour was successfully created.' }
         format.json { render :show, status: :created, location: "/provider"}
       else
-        format.html { redirect_to '/tour/new', notice: @new_tour.errors.full_messages}
+        format.html { redirect_to "/provider", notice: @new_tour.errors.full_messages}
         format.json { render json: @new_tour.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def update
+    # render json:params
+    Tour.find(params[:id]).update(update_params)
+    redirect_to '/provider'
+  end
+  def update_pic
+    Tour.find(params[:id]).update(tour_pic:params[:tour][:change_pic])
+    redirect_to '/provider'
   end
 
   def destroy
@@ -43,5 +52,8 @@ class TourController < ApplicationController
   end
   def reserve_params
     params.require(:reserve).permit(:tour_date, :provider, :tour, :name)
+  end
+  def update_params
+    params.require(:tour).permit(:name, :description, :category)
   end
 end
