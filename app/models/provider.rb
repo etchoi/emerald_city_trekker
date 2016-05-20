@@ -4,6 +4,7 @@ class Provider < ActiveRecord::Base
   has_many :requesteds, dependent: :destroy
   has_many :scheduleds, dependent: :delete_all
   has_many :scheduled_tours, through: :tours, source: :scheduled, dependent: :destroy
+  has_many :ratings, foreign_key: :reviews
 
 
   has_attached_file :profile_pic, :styles => {

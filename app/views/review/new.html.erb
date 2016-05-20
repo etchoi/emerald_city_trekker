@@ -1,0 +1,33 @@
+<h1>Review#new</h1>
+<p>Find me in app/views/review/new.html.erb</p>
+
+
+<div class="container col-lg-12 col-md-12">
+  <div id="rating_profile">
+    <h3>Let <%= @provider_profile.name %> know how he did during the tour [populate with tour name]!</h3>
+    <span id="rating_pic"><%= image_tag @provider_profile.profile_pic.url (:small) %></span>
+    <div id="provider_content">
+  </div>
+
+  <% (notice.kind_of?(Array) ? notice : [notice]).each do |x| %>
+     <p><b><%= x %></b></p>
+  <% end %>
+
+  <div id="review">
+    <form action="/review" method="post">
+      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+      <input type="hidden" name="rating[provider]" value="<%= @provider_profile.id %>">
+      <select name="rating[rating]">
+        <option value="">How would you rate your tour?</option>
+        <option value="5">	&#9733;	&#9733;	&#9733;	&#9733;	&#9733;</option>
+        <option value="4">	&#9733;	&#9733;	&#9733;	&#9733;</option>
+        <option value="3">	&#9733;	&#9733;	&#9733;</option>
+        <option value="2">	&#9733;	&#9733;</option>
+        <option value="1">	&#9733;</option>
+      </select><br>
+      <textarea id="rating_comment" name="rating[comment]" rows="8" cols="40" placeholder="Tell us more about <%=@provider_profile.name%>"></textarea><br>
+      <button type="submit" class="btn btn-success-outline btn-sm">Accept</button>
+    </form>
+  </div>
+
+</div>

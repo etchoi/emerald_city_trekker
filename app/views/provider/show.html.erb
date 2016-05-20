@@ -1,2 +1,41 @@
 <h1>Provider#show</h1>
 <p>Find me in app/views/provider/show.html.erb</p>
+
+<div class="container">
+  <div id="provider_profile">
+    <div id="provider_pic">
+      <%= image_tag @provider_profile.profile_pic.url (:small) %>
+    </div>
+    <h3 id="greet">Meet <%= @provider_profile.name%></h3>
+  </div>
+
+
+  <div id="review">
+    <% if @provider_rating %>
+      <% @provider_rating.each do |r| %>
+        <div class="each_review">
+          <div class="reviewer_pic">
+            <%= image_tag r.user.profile_pic.url (:small) %>
+          </div>
+          <%= r.rating %>
+          <div class="reviewer_review">
+            <% if r.rating == 1 %>
+               <img class="review_star" src="/assets/1star.jpg" alt="" />
+            <% elsif r.rating == 2 %>
+               <img class="review_star" src="/assets/2star.jpg" alt="" />
+            <%  elsif r.rating == 3 %>
+               <img class="review_star" src="/assets/3star.jpg" alt="" />
+            <% elsif r.rating == 4 %>
+               <img class="review_star" src="/assets/4star.jpg" alt="" />
+            <% elsif r.rating == 5 %>
+               <img class="review_star" src="/assets/5star.jpg" alt="" />
+            <% end %>
+            "<%= r.content %>"
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+<!-- Close container -->
+</div>

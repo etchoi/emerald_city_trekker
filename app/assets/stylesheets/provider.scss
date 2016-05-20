@@ -96,6 +96,37 @@
 
 }
 
-// #image_col {
-//   width: 10%;
-// }
+// Provider#Show
+#provider_profile {
+  max-width: 80%;
+  margin: 0 auto;
+}
+  #provider_pic {
+    width: 200px;
+    height: 100px;
+  }
+  #greet {
+    color: white;
+  }
+
+#review {
+  max-width: 80%;
+  margin: 0 auto;
+  margin-top: 10%;
+}
+  .each_review {
+    display: inline-block;
+  }
+  .reviewer_pic {
+    width: 150px;
+    height: 120px;
+    display: inline-block;
+  }
+  .reviewer_review {
+    display: inline-block;
+    margin-left: 50px;
+  }
+  .review_star {
+    min-width: 20px;
+    min-height: 20px;
+  }

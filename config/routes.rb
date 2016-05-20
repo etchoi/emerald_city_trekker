@@ -9,11 +9,13 @@ Rails.application.routes.draw do
   get '/user/destroy' => 'user#destroy'
   get '/provider/destroy' => 'provider#destroy'
   get '/tour/destroy/:id' => 'tour#destroy'
+  get '/review/new/:id' => 'review#new'
   resources :session
   resources :user
   resources :reservation
   resources :provider
   resources :tour
+  resources :review
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

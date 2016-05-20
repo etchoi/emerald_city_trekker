@@ -77,12 +77,12 @@
               <p><%= x.user.first_name %> from <%= x.user.city %>, <%= x.user.country %> requested your <%= x.tour.name %> tour for <%= x.tour_date.strftime('%B %e, %Y') %></p>
               <p>
                 <form action="/reservation/reserve/<%= x.id %>" method="post" id="accept">
-                <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-                <input type="hidden" name=schedule[tour_date] value="<%= x.tour_date %>">
-                <input type="hidden" name=schedule[user_id] value="<%= x.user_id %>">
-                <input type="hidden" name=schedule[provider_id] value="<%= x.provider_id %>">
-                <input type="hidden" name=schedule[tour_id] value="<%= x.tour_id %>">
-                <button type="submit" class="btn btn-success-outline btn-sm">Accept</button>
+                  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+                  <input type="hidden" name=schedule[tour_date] value="<%= x.tour_date %>">
+                  <input type="hidden" name=schedule[user_id] value="<%= x.user_id %>">
+                  <input type="hidden" name=schedule[provider_id] value="<%= x.provider_id %>">
+                  <input type="hidden" name=schedule[tour_id] value="<%= x.tour_id %>">
+                  <button type="submit" class="btn btn-success-outline btn-sm">Accept</button>
                 </form>
                 <form action="/reservation/destroy/<%= x.id %>" method="post" id="decline" >
                   <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">

@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :scheduleds, dependent: :destroy
   has_many :requesteds, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   has_attached_file :profile_pic, :styles => {
     :large => "500x500^",

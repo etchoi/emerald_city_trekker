@@ -17,7 +17,6 @@
 
   <div id="tour_top_bar" class="col-xs-12 col-md-12 col-md-offset-1">
     <h1 id="tour_welcome">What do you want to explore today?</h1>
-    <%= session[:user]%>
     <% (notice.kind_of?(Array) ? notice : [notice]).each do |x| %>
        <h5 id="tour_notice" class="col-xs-6 col-md-12" style="color:green"><%= x %></h5>
     <% end %>
@@ -66,7 +65,7 @@
                       <img src="<%= x.tour_pic.url (:medium) %>">
                     </div>
                     <div id="inner_body" class=".col-md-8">
-                      <h6>Guide's Name: </h6><p><%= x.provider.name %></p>
+                      <h6>Guide's Name: </h6><a href="/review/new/<%= x.provider.id %>"><%= x.provider.name %></a> (Learn more about <%= x.provider.name %> <a href="/provider/<%=x.provider.id%>">here</a>)
                       <h6>Description: </h6><p><%= x.description %></p>
                       <form action="/reservation" method="post">
                         <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">

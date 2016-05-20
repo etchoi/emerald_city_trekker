@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160427174808) do
+ActiveRecord::Schema.define(version: 20160520180559) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,15 @@ ActiveRecord::Schema.define(version: 20160427174808) do
     t.datetime "profile_pic_updated_at"
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "rating"
+    t.text     "content"
+    t.string   "traveler_id"
+    t.string   "guide_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "requests", force: :cascade do |t|
     t.date     "tour_date"
     t.integer  "user_id"
@@ -42,6 +51,17 @@ ActiveRecord::Schema.define(version: 20160427174808) do
   add_index "requests", ["provider_id"], name: "index_requests_on_provider_id", using: :btree
   add_index "requests", ["tour_id"], name: "index_requests_on_tour_id", using: :btree
   add_index "requests", ["user_id"], name: "index_requests_on_user_id", using: :btree
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer  "rating"
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "guide"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
 
   create_table "scheduleds", force: :cascade do |t|
     t.date     "tour_date"
@@ -90,6 +110,7 @@ ActiveRecord::Schema.define(version: 20160427174808) do
   add_foreign_key "requests", "providers"
   add_foreign_key "requests", "tours"
   add_foreign_key "requests", "users"
+  add_foreign_key "reviews", "users"
   add_foreign_key "scheduleds", "providers"
   add_foreign_key "scheduleds", "tours"
   add_foreign_key "scheduleds", "users"
