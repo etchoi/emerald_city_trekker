@@ -1,4 +1,4 @@
-# Hello Seattle
+# Emerald City Trekker
 Ethan Choi
 2016
 Ruby on Rails, Bootstrap, Postgres
