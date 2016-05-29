@@ -33,6 +33,7 @@
                <img class="review_star" src="/assets/5star.jpg" alt="" />
             <% end %>
             <p>"<%= x.content %>"</p>
+            <p><%= x.created_at.strftime("%m/%d/%Y") %></p>
 
             <p><%= x.user.first_name %></p>
           </div><br>
