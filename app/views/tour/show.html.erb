@@ -1,2 +1,44 @@
 <h1>Tour#show</h1>
 <p>Find me in app/views/tour/show.html.erb</p>
+
+<div class="container">
+  <div id="tour_info">
+    <img class="profile_pic" src="<%= @tour.tour_pic.url (:small) %>" alt="Card image cap">
+    <h2><%= @tour.name %></h2>
+    <p><%= @tour.description %></p>
+    <p><%= @tour.itinerary %></p>
+  </div>
+
+  <div id="tour_provider">
+    <img class="profile_pic" src="<%= @tour.provider.profile_pic.url (:small) %>" alt="Card image cap">
+    <h2>Meet <%= @tour.provider.name %>!</h2>
+    <p><%= @tour.provider.about %></p>
+  </div>
+
+  <div id="tour_reviews">
+    <% if @review %>
+      <% @review.each_slice(3) do |three_row| %>
+      <div class="row" id="tile_row">
+        <% three_row.each do |x| %>
+          <div class="reviewer_review">
+            <% if x.rating == 1 %>
+               <img class="review_star" src="/assets/1star.jpg" alt="" />
+            <% elsif x.rating == 2 %>
+               <img class="review_star" src="/assets/2star.jpg" alt="" />
+            <%  elsif x.rating == 3 %>
+               <img class="review_star" src="/assets/3star.jpg" alt="" />
+            <% elsif x.rating == 4 %>
+               <img class="review_star" src="/assets/4star.jpg" alt="" />
+            <% elsif x.rating == 5 %>
+               <img class="review_star" src="/assets/5star.jpg" alt="" />
+            <% end %>
+            <p>"<%= x.content %>"</p>
+
+            <p><%= x.user.first_name %></p>
+          </div><br>
+      <% end %>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

@@ -17,7 +17,8 @@
     <form action="/review" method="post">
       <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
       <input type="hidden" name="rating[provider]" value="<%= @provider_profile.id %>">
-      <select name="rating[rating]">
+      <input type="hidden" name="rating[provider]" value="<%= @provider_profile.tour.id %>">
+      <select name="rating[tour]">
         <option value="">How would you rate your tour?</option>
         <option value="5">	&#9733;	&#9733;	&#9733;	&#9733;	&#9733;</option>
         <option value="4">	&#9733;	&#9733;	&#9733;	&#9733;</option>

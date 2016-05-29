@@ -2,12 +2,14 @@
 
 one:
   rating: 1
-  content: MyText
+  content: MyString
   user_id: 
-  guide: 1
+  provider_id: 
+  tour_id: 
 
 two:
   rating: 1
-  content: MyText
+  content: MyString
   user_id: 
-  guide: 1
+  provider_id: 
+  tour_id: 

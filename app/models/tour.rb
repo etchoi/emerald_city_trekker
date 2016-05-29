@@ -1,6 +1,7 @@
 class Tour < ActiveRecord::Base
   belongs_to :provider
   has_many :scheduleds
+  has_many :reviews
 
   has_attached_file :tour_pic, :styles => {
     :large => "380x300!",

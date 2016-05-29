@@ -7,12 +7,13 @@
       <%= image_tag @provider_profile.profile_pic.url (:small) %>
     </div>
     <h3 id="greet">Meet <%= @provider_profile.name%></h3>
+    <p><%= @provider_profile.name%> has <%=@provider_profile.reviews.count %> reviews. See what people are saying.</p>
   </div>
 
 
   <div id="review">
-    <% if @provider_rating %>
-      <% @provider_rating.each do |r| %>
+    <% if @provider_profile.reviews %>
+      <% @provider_profile.reviews.each do |r| %>
         <div class="each_review">
           <div class="reviewer_pic">
             <%= image_tag r.user.profile_pic.url (:small) %>

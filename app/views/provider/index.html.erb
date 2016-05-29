@@ -126,6 +126,7 @@
               <%= f.input :provider_id, :as => :hidden, :input_html => { :value => session[:provider] } %>
               <%= f.input :name, label: 'Name: ', :input_html => { id: :form_top } %>
               <%= f.input :description, label: 'Description: ', :input_html => { id: :form_bottom } %>
+              <%= f.input :itinerary, label: 'itinerary: ', :input_html => { id: :form_bottom } %>
               <%= f.select :category, [['Food and drink','Food and Drink'],['Neighborhood Tours','Neighborhood Tours'],['Water Sports','Water Sports'],['Landmarks','Landmarks']], selected: "X" %>
               <%= f.file_field :tour_pic %><br>
               <%= f.submit :submit, :html => { class: 'btn btn-success' } %>

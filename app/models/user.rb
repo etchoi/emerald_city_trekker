@@ -16,4 +16,4 @@ class User < ActiveRecord::Base
   before_save do
     self.email.downcase
   end
-end
+end 

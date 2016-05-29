@@ -73,7 +73,8 @@
                         <input type="hidden" name=reserve[tour] value="<%= x.id %>">
                         <input type="hidden" name=reserve[name] value="<%= x.provider.name %>">
                         <input placeholder="Propose a tour date" name=reserve[tour_date] class="textbox-n" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">
-                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Nevermind</button>
+                    <button type="button" class="btn btn-default btn-sm"><a href="/tour/<%= x.id %>">Learn More</a></button>
+                    <button type="button" class="btn btn-default btn-sm"><a href="/review/<%= x.id %>">Review This Tour</a></button>
                     <button type="submit" class="btn btn-success btn-sm">Request Tour</button>
                     </form>
                   </div>

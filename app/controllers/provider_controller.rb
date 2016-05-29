@@ -8,8 +8,7 @@ class ProviderController < ApplicationController
   end
 
   def show
-    @provider_profile = Provider.find(params[:id])
-    @provider_rating = Review.joins(:user).where(guide:params[:id])
+    @provider_profile = Provider.joins(:reviews).find(params[:id])
   end
 
   def new

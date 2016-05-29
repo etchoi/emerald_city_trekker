@@ -8,6 +8,8 @@ class TourController < ApplicationController
   end
 
   def show
+    @tour = Tour.joins(:provider).find(params[:id])
+    @review = Review.joins(:user).where(tour_id:params[:id])
   end
 
   def new
@@ -48,7 +50,7 @@ class TourController < ApplicationController
 
   private
   def tour_params
-    params.require(:tour).permit(:name, :description, :category, :provider_id, :tour_pic)
+    params.require(:tour).permit(:name, :description, :itinerary, :category, :provider_id, :tour_pic)
   end
   def reserve_params
     params.require(:reserve).permit(:tour_date, :provider, :tour, :name)
