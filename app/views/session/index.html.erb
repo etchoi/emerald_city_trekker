@@ -51,14 +51,25 @@
 </div>
 
 <% if @all_tours %>
-  <div  id="tours_row" class="col-md-12">
+  <div  class="tours_row" class="col-md-12">
     <% @all_tours.each do |x| %>
       <div class="col-xs-6 col-md-3">
-        <img class="tour_image" src="<%= x.tour_pic.url (:medium) %>" alt="...">
+        <a href="/tour/<%= x.id %>"><img class="tour_image" src="<%= x.tour_pic.url (:medium) %>" alt="Tour Pic"></a>
         <h4 class="tour_name"><%= x.name %></h4>
       </div>
     <% end %>
   </div>
 <% end %>
 
-<a href="/review">Rating</a>
+<div class="tour_suggestion">
+
+</div>
+
+<div class="footer">
+  <ul>
+    <li><a href="#">Contact Us</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact Us</a><br></li>
+    <li><p>Copyright &copy; Ethan Choi 2016</p></li>
+  </ul>
+</div>

@@ -1,12 +1,32 @@
-<h1>Review#show</h1>
-<p>Find me in app/views/review/show.html.erb</p>
+<nav id="navbar_tour" class="navbar navbar-default navbar-fixed-top col-md-12">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/session">
+        <%= image_tag('logo.jpg') %>
+      </a>
+    </div>
+    <ul id="navbar_links" class="nav navbar-nav navbar-right">
+      <li><a href="/user/<%= session[:user]%>">Dashboard</a></li> |
+      <li><a href="/">Home</a></li> |
+      <% if session[:user] != nil %>
+        <li><a href="/user/destroy">Logout</a></li>
+      <% else %>
+        <li><a href="/user">Login</a></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
 
-
-<div class="container col-lg-12 col-md-12">
+<div class="container">
   <div id="rating_profile">
     <!-- <h3>How was the <%= @tour.name %> tour</h3> -->
     <span id="rating_pic"><%= image_tag @tour.tour_pic.url (:small) %></span>
-    <div id="provider_content">
+    <div id="review_tour_information">
+      <h4><%= @tour.name %></h4>
+      <p><%= @tour.description %></p>
+      <%= image_tag @tour.provider.profile_pic.url (:small) %>
+      <%= @tour.provider.name %>
+    </div>
   </div>
 
   <% (notice.kind_of?(Array) ? notice : [notice]).each do |x| %>

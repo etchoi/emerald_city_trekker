@@ -1,45 +1,100 @@
-<h1>Tour#show</h1>
-<p>Find me in app/views/tour/show.html.erb</p>
-
-<div class="container">
-  <div id="tour_info">
-    <img class="profile_pic" src="<%= @tour.tour_pic.url (:small) %>" alt="Card image cap">
-    <h2><%= @tour.name %></h2>
-    <p><%= @tour.description %></p>
-    <p><%= @tour.itinerary %></p>
-  </div>
-
-  <div id="tour_provider">
-    <img class="profile_pic" src="<%= @tour.provider.profile_pic.url (:small) %>" alt="Card image cap">
-    <h2>Meet <%= @tour.provider.name %>!</h2>
-    <p><%= @tour.provider.about %></p>
-  </div>
-
-  <div id="tour_reviews">
-    <% if @review %>
-      <% @review.each_slice(3) do |three_row| %>
-      <div class="row" id="tile_row">
-        <% three_row.each do |x| %>
-          <div class="reviewer_review">
-            <% if x.rating == 1 %>
-               <img class="review_star" src="/assets/1star.jpg" alt="" />
-            <% elsif x.rating == 2 %>
-               <img class="review_star" src="/assets/2star.jpg" alt="" />
-            <%  elsif x.rating == 3 %>
-               <img class="review_star" src="/assets/3star.jpg" alt="" />
-            <% elsif x.rating == 4 %>
-               <img class="review_star" src="/assets/4star.jpg" alt="" />
-            <% elsif x.rating == 5 %>
-               <img class="review_star" src="/assets/5star.jpg" alt="" />
-            <% end %>
-            <p>"<%= x.content %>"</p>
-            <p><%= x.created_at.strftime("%m/%d/%Y") %></p>
-
-            <p><%= x.user.first_name %></p>
-          </div><br>
+<nav id="navbar_tour" class="navbar navbar-default navbar-fixed-top col-md-12">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/session">
+        <%= image_tag('logo.jpg') %>
+      </a>
+    </div>
+    <ul id="navbar_links" class="nav navbar-nav navbar-right">
+      <li><a href="/user/<%= session[:user]%>">Dashboard</a></li> |
+      <li><a href="/">Home</a></li> |
+      <% if session[:user] != nil %>
+        <li><a href="/user/destroy">Logout</a></li>
+      <% else %>
+        <li><a href="/user">Login</a></li>
       <% end %>
+    </ul>
+  </div>
+</nav>
+
+<div id="tour_show_container">
+  <div class="container">
+
+    <div id="tour_info" class="col-md-12 col-xs-12">
+      <div id="tour_show_heading">
+        <h3><%= @tour.name%></h3>
       </div>
+      <div id="tour_content">
+        <img class="profile_pic" src="<%= @tour.tour_pic.url (:small) %>" alt="Card image cap">
+        <div id="tour_description">
+          <h5>Description</h5>
+          <p><%= @tour.description %></p>
+          <h5 id="tour_itinerary">Itinerary</h5>
+          <p><%= @tour.itinerary %></p>
+        </div>
+      </div>
+    </div>
+
+    <div id="tour_request_tour">
+
+      <% if session[:user] == nil %>
+        <h5>Login or register to request a tour</h5>
+      <% else %>
+        <form action="/reservation" method="post">
+          <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+          <input type="hidden" name=reserve[provider] value="<%= @tour.provider.id %>">
+          <input type="hidden" name=reserve[tour] value="<%= @tour.id %>">
+          <input type="hidden" name=reserve[name] value="<%= @tour.provider.name %>">
+          <input placeholder="Request a tour date" name=reserve[tour_date] class="textbox-n" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">
+        </form>
+        <button type="submit" class="btn btn-success btn-sm">Request Tour</button>
       <% end %>
-    <% end %>
+    </div>
+
+    <div id="tour_provider" class="col-md-3 col-xs-8">
+      <div class="tour_show_heading">
+        <h3>Tour Guide</h3>
+      </div>
+      <div id="guide_profile">
+        <div class="text-center">
+          <h4>Meet <%= @tour.provider.name %>!</h4>
+          <img class="profile_pic" src="<%= @tour.provider.profile_pic.url (:small) %>" alt="Card image cap">
+        </div>
+        <div id="meet_guide">
+          <p>[description of the guide would go here, if available]</p>
+          <p><%= @tour.provider.about %></p>
+        </div>
+      </div>
+    </div>
+
+    <div id="tour_reviews" class="col-md-8 col-xs-12">
+      <div class="tour_show_heading">
+        <h3>Reviews</h3>
+      </div>
+      <% if @review.blank? %>
+        <div id="no_review_warning">
+          <a href="/review/<%= @tour.id %>"><button type="button" class="btn btn-primary-outline btn-md">Be the first to review this tour</button></a>
+        </div>
+      <% else  %>
+        <% @review.each do |x| %>
+          <div id="review_each" class="reviewer_review">
+            <% if x.rating == 1 %>
+               <img id="review_star1" src="/assets/1star.jpg" alt="" />
+            <% elsif x.rating == 2 %>
+               <img id="review_star2" src="/assets/2star.jpg" alt="" />
+            <%  elsif x.rating == 3 %>
+               <img id="review_star3" src="/assets/3star.jpg" alt="" />
+            <% elsif x.rating == 4 %>
+               <img id="review_star4" src="/assets/4star.jpg" alt="" />
+            <% elsif x.rating == 5 %>
+               <img id="review_star5" src="/assets/5star.jpg" alt="" />
+            <% end %>
+            <h5>"<%= x.content %>"</h5>
+            <p><%= x.user.first_name %> from <%= x.user.city %>, <%= x.user.country %> | <%= x.created_at.strftime("%m/%d/%Y") %></p>
+          </div>
+      <% end %>
+      <% end %>
+    </div>
+
   </div>
 </div>

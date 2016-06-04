@@ -5,10 +5,15 @@
 
 
 #navbar_tour {
-  background-color: silver;
+  background-color: white;
+  z-index: 1;
 }
+// =============== Tour Index ==================
 #tour_container {
   margin-top: 10%;
+}
+#tour_top_bar {
+  margin: 0 auto;
 }
 #tour_welcome {
   margin: 10px 0 0 0;
@@ -53,9 +58,15 @@ img {
   width: 75%;
   margin-left: 3%;
 }
-// // #modal_body p{
-// //   display: inline-block;
-// // }
+  #inner_body p {
+    font-size: 1em;
+  }
+  #inner_body button {
+    margin-bottom: 5%;
+  }
+  #inner_body form {
+    margin-bottom: 1%;
+  }
 
 
 
@@ -64,3 +75,123 @@ img {
 #edit_tour_form {
   margin: 20%;
 }
+
+
+
+//=================== Show Tour =======================
+#tour_show_container {
+  width: 100%;
+  background: #73767B;
+  padding-bottom: 100%;
+}
+
+
+#tour_info {
+  margin-top: 10%;
+  border: 1px solid silver;
+  border-radius: 5px;
+  padding: 0;
+  background-color: #ECEDE8;
+}
+    #tour_show_heading {
+      width: 100%;
+      padding: 1%;
+      text-align: center;
+      background-color: #FD7E47;
+      border-bottom: 1px solid silver;
+    }
+    #tour_content {
+      padding: 5%;
+    }
+    #tour_info img {
+      display: inline-block;
+      vertical-align: top;
+    }
+    #tour_description {
+      max-width: 70%;
+      display: inline-block;
+      margin-left: 5%;
+    }
+    #tour_description p {
+      font-size: 1em;
+    }
+    #tour_itinerary {
+      margin-top: 5%;
+    }
+
+
+//HERE HERE HERE HERE HERE HERE HERE HERE HERE HERE HERE HERE HERE HERE
+// #tour_request_tour {
+//   background-color: #ECEDE8;
+//   margin: 5% 0 5% 0;
+// }
+
+#tour_provider {
+  position: relative;
+  margin-top: 5%;
+  border: 1px solid silver;
+  border-radius: 5px;
+  padding: 0;
+  background-color: #ECEDE8;
+}
+    #guide_profile {
+      padding: 5%;
+    }
+    #guide_profile img {
+      max-width: 80%;
+    }
+    #meet_guide {
+      padding-top: 4%;
+    }
+    #tour_provider p {
+      font-size: 1em;
+      margin-top: 5%;
+    }
+
+#tour_reviews {
+  margin-top: 5%;
+  border: 1px solid silver;
+  border-radius: 5px;
+  float: right;
+  padding: 0;
+  background-color: #ECEDE8;
+  min-height: 320px;
+}
+    .tour_show_heading {
+      width: 100%;
+      padding: 1%;
+      text-align: center;
+      background-color: #B5C9D4;
+      border-bottom: 1px solid silver;
+    }
+    #review_each {
+      margin-top: 4%;
+      padding: 1% 0 2% 0;
+      border-bottom: 1px solid silver;
+      min-width: 80%;
+    }
+        #review_star5 {
+          max-width: 150px;
+        }
+        #review_star4 {
+          max-width: 120px;
+        }
+        #review_star3 {
+          max-width: 90px;
+        }
+        #review_star2 {
+          max-width: 60px;
+        }
+        #review_star1 {
+          max-width: 30px;
+        }
+        #review_each h5 {
+          margin-top: 5%;
+        }
+        #review_each p {
+          font-size: 1em;
+        }
+    #no_review_warning {
+      text-align: center;
+      margin-top: 15%;
+    }

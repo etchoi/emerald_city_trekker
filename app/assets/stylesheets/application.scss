@@ -20,10 +20,10 @@
 
 body {
   width: 100%;
-  background-color: #73767B;
   margin: 0px;
   padding: 0px;
   font-family: "Raleway";
+  margin: 0 auto;
 }
 
 .container {
@@ -31,7 +31,6 @@ body {
   height: 100%;
   margin: 0 auto;
   padding: 0px;
-  background-color: #ECEDE8;
   margin-bottom: 100px;
 }
 
@@ -39,3 +38,38 @@ body {
   height: 150px;
   width: 200px;
 }
+
+.text-center {
+  text-align: center;
+}
+
+#navbar_provider {
+  position: relative;
+  background-color: #B1D877;
+  border-bottom: 2px solid #FFFFFF;
+}
+#navbar_links {
+  list-style-type: none;
+  float: right;
+  margin-top: 1.5%;
+}
+  #navbar_links li {
+    display: inline;
+    font-size: 1.5em;
+  }
+
+.footer {
+    position : absolute;
+    bottom : 0;
+    height : 150px;
+    width: 100%;
+    margin-top : 40px;
+    background-color: #ECEDE8;
+}
+  .footer ul {
+    font-size: 1em;
+    margin: 2% 0 0 10%;
+  }
+  .footer li {
+    list-style-type: none;
+  }

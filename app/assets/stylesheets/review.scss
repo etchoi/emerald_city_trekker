@@ -1,3 +1,26 @@
 // Place all the styles related to the review controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+//===================== Review show ========================
+#rating_profile {
+  border: 1px solid silver;
+  border-radius: 5px;
+  margin-top: 10%;
+  padding: 5%;
+  color: black;
+}
+    #rating_profile img {
+      max-width: 30%;
+      border: 2px solid silver;
+      display: inline-block;
+    }
+    #review_tour_information {
+      display: inline-block;
+      margin-left: 4%;
+      width: 60%;
+    }
+    #review_guide_information {
+      display: inline-block;
+    }

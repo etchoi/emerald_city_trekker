@@ -4,10 +4,13 @@ class UserController < ApplicationController
   end
 
   def show
-    @user = User.find(session[:user])
-    @request = Request.joins(:tour).joins(:provider).where(user_id:session[:user])
-    @scheduled = Scheduled.joins(:user).where(user_id:session[:user])
-
+    if session[:user] == nil
+      render json:'hello world'
+    else
+      @user = User.find(session[:user])
+      @request = Request.joins(:tour).joins(:provider).where(user_id:session[:user])
+      @scheduled = Scheduled.joins(:user).where(user_id:session[:user])
+    end
 
   end
 

@@ -1,14 +1,20 @@
 <nav id="navbar_tour" class="navbar navbar-default navbar-fixed-top col-md-12">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="/session">
         <%= image_tag('logo.jpg') %>
       </a>
     </div>
     <ul id="navbar_links" class="nav navbar-nav navbar-right">
-      <li><a href="/user/<%= session[:user]%>">Dashboard</a></li> |
+      <% if session[:user] != nil %>
+        <li><a href="/user/<%= session[:user]%>">Dashboard</a></li> |
+      <% end %>
       <li><a href="/">Home</a></li> |
-      <li><a href="/user/destroy">Logout</a></li>
+      <% if session[:user] != nil %>
+        <li><a href="/user/destroy">Logout</a></li>
+      <% else %>
+        <li><a href="/user">Login</a></li>
+      <% end %>
     </ul>
   </div>
 </nav>
@@ -23,7 +29,7 @@
   </div>
 
 <!-- ====================== Tour Cards ============================ -->
-  <div class="tours_offered  col-md-12 col-md-offset-2">
+  <div class="tours_offered  col-md-12 col-md-offset-1">
     <% if @all_tours %>
     <% @all_tours.each_slice(3) do |three_row| %>
     <div class="row" id="tile_row">
@@ -51,7 +57,7 @@
             <h4 class="card-title"><%= x.name %></h4>
             <p class="card-text"><%= truncate(x.description, length: 50, separator: " ") %></p>
             <!-- Button trigger modal -->
-            <button id="book_btn" type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#myModal-<%= x.id%>">
+            <button id="book_btn" type="button" class="btn btn-primary-outline btn-sm" data-toggle="modal" data-target="#myModal-<%= x.id%>">
               Learn More
             </button>
             <!-- Modal -->
@@ -65,17 +71,24 @@
                       <img src="<%= x.tour_pic.url (:medium) %>">
                     </div>
                     <div id="inner_body" class=".col-md-8">
-                      <h6>Guide's Name: </h6><a href="/review/new/<%= x.provider.id %>"><%= x.provider.name %></a> (Learn more about <%= x.provider.name %> <a href="/provider/<%=x.provider.id%>">here</a>)
-                      <h6>Description: </h6><p><%= x.description %></p>
+                      <h5>Guide's Name: </h5>
+                      <p><%= x.provider.name %>
+                      Learn more about <%= x.provider.name %> <a href="/provider/<%=x.provider.id%>">here)</a> </p>
+                      <h5>Description: </h5>
+                      <p><%= x.description %></p>
+                      <button type="button" class="btn btn-secondary-outline btn-sm"><a href="/tour/<%= x.id %>">Learn More</a></button>
+                      <button type="button" class="btn btn-secondary-outline btn-sm"><a href="/review/<%= x.id %>">Review This Tour</a></button>
+
                       <form action="/reservation" method="post">
                         <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
                         <input type="hidden" name=reserve[provider] value="<%= x.provider.id %>">
                         <input type="hidden" name=reserve[tour] value="<%= x.id %>">
                         <input type="hidden" name=reserve[name] value="<%= x.provider.name %>">
-                        <input placeholder="Propose a tour date" name=reserve[tour_date] class="textbox-n" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">
-                    <button type="button" class="btn btn-default btn-sm"><a href="/tour/<%= x.id %>">Learn More</a></button>
-                    <button type="button" class="btn btn-default btn-sm"><a href="/review/<%= x.id %>">Review This Tour</a></button>
-                    <button type="submit" class="btn btn-success btn-sm">Request Tour</button>
+                        <input placeholder="Request a tour date" name=reserve[tour_date] class="textbox-n" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">
+                      </form>
+                      <button type="submit" class="btn btn-success btn-sm">Request Tour</button>
+
+
                     </form>
                   </div>
                 </div>
