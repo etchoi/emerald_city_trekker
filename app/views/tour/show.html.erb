@@ -33,26 +33,26 @@
           <p><%= @tour.itinerary %></p>
         </div>
       </div>
+      <div id="tour_request_tour">
+        <% if session[:user] == nil %>
+          <h5 id="request_login_msg">You must be logged in request a tour. Login or register <a href="/user">here</a>.</h5>
+        <% else %>
+          <form id="request_login_form" action="/reservation" method="post">
+            <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+            <input type="hidden" name=reserve[provider] value="<%= @tour.provider.id %>">
+            <input type="hidden" name=reserve[tour] value="<%= @tour.id %>">
+            <input type="hidden" name=reserve[name] value="<%= @tour.provider.name %>">
+            <input placeholder="Request a tour date" name=reserve[tour_date] class="textbox-n" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">
+            <button type="submit" class="btn btn-success btn-sm">Request Tour</button>
+          </form>
+        <% end %>
+      </div>
     </div>
 
-    <div id="tour_request_tour">
 
-      <% if session[:user] == nil %>
-        <h5>Login or register to request a tour</h5>
-      <% else %>
-        <form action="/reservation" method="post">
-          <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-          <input type="hidden" name=reserve[provider] value="<%= @tour.provider.id %>">
-          <input type="hidden" name=reserve[tour] value="<%= @tour.id %>">
-          <input type="hidden" name=reserve[name] value="<%= @tour.provider.name %>">
-          <input placeholder="Request a tour date" name=reserve[tour_date] class="textbox-n" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">
-        </form>
-        <button type="submit" class="btn btn-success btn-sm">Request Tour</button>
-      <% end %>
-    </div>
 
     <div id="tour_provider" class="col-md-3 col-xs-8">
-      <div class="tour_show_heading">
+      <div id="tour_guide_heading" class="tour_show_heading">
         <h3>Tour Guide</h3>
       </div>
       <div id="guide_profile">
@@ -61,7 +61,7 @@
           <img class="profile_pic" src="<%= @tour.provider.profile_pic.url (:small) %>" alt="Card image cap">
         </div>
         <div id="meet_guide">
-          <p>[description of the guide would go here, if available]</p>
+          <!-- <p>[description of the guide would go here, if available]</p> -->
           <p><%= @tour.provider.about %></p>
         </div>
       </div>

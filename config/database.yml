@@ -24,8 +24,6 @@ default: &default
 development:
   <<: *default
   database: emerald_trekker_development
-  username: ubuntu
-
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -60,8 +58,6 @@ development:
 test:
   <<: *default
   database: emerald_trekker_test
-  username: ubuntu
-
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -85,5 +81,6 @@ test:
 production:
   <<: *default
   database: emerald_trekker_production
-  username: ubuntu
+  # username: ubuntu (for deployment only)
+  username: emerald_trekker
   password: <%= ENV['EMERALD_TREKKER_DATABASE_PASSWORD'] %>
