@@ -6,9 +6,10 @@
       </a>
     </div>
     <ul id="navbar_links" class="nav navbar-nav navbar-right">
-      <li><a href="/user/<%= session[:user]%>">Dashboard</a></li> |
       <li><a href="/">Home</a></li> |
+      <li><a href="/tour"</li>
       <% if session[:user] != nil %>
+      <li><a href="/user/<%= session[:user]%>">Dashboard</a></li> |
         <li><a href="/user/destroy">Logout</a></li>
       <% else %>
         <li><a href="/user">Login</a></li>
