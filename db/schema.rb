@@ -30,15 +30,6 @@ ActiveRecord::Schema.define(version: 20160529052510) do
     t.datetime "profile_pic_updated_at"
   end
 
-  create_table "ratings", force: :cascade do |t|
-    t.integer  "rating"
-    t.text     "content"
-    t.string   "traveler_id"
-    t.string   "guide_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   create_table "requests", force: :cascade do |t|
     t.date     "tour_date"
     t.integer  "user_id"
