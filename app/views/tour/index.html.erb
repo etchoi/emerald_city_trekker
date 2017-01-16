@@ -1,42 +1,25 @@
-<nav id="navbar_tour" class="navbar navbar-default navbar-fixed-top col-md-12">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/session">
-        <%= image_tag('logo.jpg') %>
-      </a>
-    </div>
-    <ul id="navbar_links" class="nav navbar-nav navbar-right">
-      <% if session[:user] != nil %>
-        <li><a href="/user/<%= session[:user]%>">Dashboard</a></li> |
-      <% end %>
-      <li><a href="/">Home</a></li> |
-      <% if session[:user] != nil %>
-        <li><a href="/user/destroy">Logout</a></li>
-      <% else %>
-        <li><a href="/user">Login</a></li>
-      <% end %>
-    </ul>
-  </div>
-</nav>
+<%= render 'layouts/navbar' %>
 
 <div id="tour_container" class="container">
 
   <div id="tour_top_bar" class="col-xs-12 col-md-12 col-md-offset-1">
     <h1 id="tour_welcome">What do you want to explore today?</h1>
-    <% (notice.kind_of?(Array) ? notice : [notice]).each do |x| %>
-       <h5 id="tour_notice" class="col-xs-6 col-md-12" style="color:green"><%= x %></h5>
+    <% if notice %>
+      <% (notice.kind_of?(Array) ? notice : [notice]).each do |x| %>
+         <h5 id="tour_notice" class="col-xs-6 col-md-12 alert alert-success" role="alert"><%= x %></h5>
+      <% end %>
     <% end %>
   </div>
 
 <!-- ====================== Tour Cards ============================ -->
-  <div class="tours_offered  col-md-12 col-md-offset-1">
+  <div class="tours_offered  col-md-12 col-sm-12 col-md-offset-1">
     <% if @all_tours %>
     <% @all_tours.each_slice(3) do |three_row| %>
     <div class="row" id="tile_row">
 
       <% three_row.each do |x| %>
       <!-- tour_tiles -->
-        <div class="card col-md-3" id="tour_cards">
+        <div class="card col-md-3 col-xs-12" id="tour_cards">
 
           <div class="card-header" id="card-header">
 
@@ -84,11 +67,8 @@
                         <input type="hidden" name=reserve[tour] value="<%= x.id %>">
                         <input type="hidden" name=reserve[name] value="<%= x.provider.name %>">
                         <input placeholder="Request a tour date" name=reserve[tour_date] class="textbox-n" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">
+                        <button type="submit" class="btn btn-success btn-sm">Request Tour</button>
                       </form>
-                      <button type="submit" class="btn btn-success btn-sm">Request Tour</button>
-
-
-                    </form>
                   </div>
                 </div>
                 </div>
@@ -101,5 +81,4 @@
     <% end %>
   <% end %>
   </div>
-
 </div>

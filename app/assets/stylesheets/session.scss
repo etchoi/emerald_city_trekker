@@ -5,7 +5,7 @@
 #top_bar {
   background: url(image_path('background.jpg')) no-repeat;
   background-size: 100%;
-  min-height: 550px;
+  min-height: 500px;
 }
   #session_navbar {
     width: 100%;
@@ -21,8 +21,11 @@
     #ham_icon {
       opacity: 0.7;
     }
-    #login_error {
-      text-align: right;
+    .login_notice {
+      max-width: 70%;
+      max-height: 10%;
+      text-align: center;
+      margin: 0 auto;
     }
   #exCollapsingNavbar {
     float: right;

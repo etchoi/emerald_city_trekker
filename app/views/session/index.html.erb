@@ -2,11 +2,6 @@
   <nav id="session_navbar" class="navbar navbar-default col-md-12 ">
     <div class="container-fluid">
       <div class="toggle">
-        <span id="login_error">
-          <% (notice.kind_of?(Array) ? notice : [notice]).each do |x| %>
-             <p><b><%= x %></b></p>
-          <% end %>
-        </span>
         <nav id="menu_bar" class="navbar navbar-light bg-faded">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
             <div id="ham_icon">
@@ -50,6 +45,14 @@
   </div>
 </div>
 
+<div class="login_notice">
+  <% (notice.kind_of?(Array) ? notice : [notice]).each do |x| %>
+  <div class="alert alert-danger" role="alert">
+    <p><b><%= x %></b></p>
+  </div>
+  <% end %>
+</div>
+
 <% if @all_tours %>
   <div  class="tours_row" class="col-md-12">
     <% @all_tours.each do |x| %>
@@ -64,11 +67,3 @@
 <div class="tour_suggestion">
 
 </div>
-
-<!-- <footer>
-  <ul>
-    <li><a href="#">Contact Us</a></li>
-    <li><a href="#">About</a></li>
-    <li><p>Copyright &copy; Ethan Choi 2016</p></li>
-  </ul>
-</footer> -->

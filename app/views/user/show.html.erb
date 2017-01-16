@@ -1,111 +1,96 @@
-<nav id="navbar_tour" class="navbar navbar-default navbar-fixed-top col-md-12">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">
-        <%= image_tag('logo.jpg') %>
-      </a>
-    </div>
-    <ul id="navbar_links" class="nav navbar-nav navbar-right">
-      <li><a style="font-family:Raleway;" href="/user/<%= session[:user]%>">Dashboard</a></li> |
-      <li><a style="font-family:Raleway;" href="/">Home</a></li> |
-      <li><a style="font-family:Raleway;" href="/user/destroy">Logout</a></li>
-    </ul>
-  </div>
-</nav>
+<%= render 'layouts/navbar' %>
 
-<div id="user_container">
+<div id="user_container" class="container">
+    <div id="dashboard_topbar">
 
-  <div id="dashboard_topbar">
-
-    <div id="profile">
-      <p><%= image_tag @user.profile_pic.url (:small) %></p>
-      <p>Provider Name: <b><%= @user.user_name %> </b></p>
-      <p>Email: <b><%= @user.email %></b></p>
-      <p>About: <b><%= @user.about %></b></p>
-    </div>
+      <div id="profile">
+        <p><%= image_tag @user.profile_pic.url (:small) %></p>
+        <p>Provider Name: <b><%= @user.user_name %> </b></p>
+        <p>Email: <b><%= @user.email %></b></p>
+        <p>About: <b><%= @user.about %></b></p>
+      </div>
 
 
 
 
-    <div id="user_tabs" class="pc-tab">
-      <input checked="checked" id="tab1" type="radio" name="pct" />
-      <input id="tab2" type="radio" name="pct" />
-      <input id="tab3" type="radio" name="pct" />
-      <nav>
-        <ul>
-          <li class="tab1">
-            <label for="tab1">Welcome!</label>
-          </li>
-          <li class="tab2">
-            <label for="tab2">Scheduled Tours <span class="badge">(<%= @scheduled.count %>)</span></label>
-          </li>
-          <li class="tab3">
-            <label for="tab3">Pending Requests <span class="badge">(<%= @request.count %>)</span></label>
-          </li>
-        </ul>
-      </nav>
-      <section>
-        <div class="tab1">
-          <h2>Hi <%= @user.first_name %>! Welcome to your dashboard</h2><br>
-          <% if @scheduled %>
-          <p>You have <b><%= @scheduled.count %></b> scheduled tours. Click the tabs above to review your scheduled and pending tours.</p>
-          <% end %>
-          <% if @request %>
-          <p>You also have <b><%= @request.count %></b> tours pending. We'll let you know when your tour guide responds.</p>
-          <% end %>
-        </div>
-        <div class="tab2">
-          <h4>Your Scheduled Tours</h4>
-          <div id="scheduled_tours">
+      <div id="user_tabs" class="pc-tab">
+        <input checked="checked" id="tab1" type="radio" name="pct" />
+        <input id="tab2" type="radio" name="pct" />
+        <input id="tab3" type="radio" name="pct" />
+        <nav>
+          <ul>
+            <li class="tab1">
+              <label for="tab1">Welcome!</label>
+            </li>
+            <li class="tab2">
+              <label for="tab2">Scheduled Tours <span class="badge">(<%= @scheduled.count %>)</span></label>
+            </li>
+            <li class="tab3">
+              <label for="tab3">Pending Requests <span class="badge">(<%= @request.count %>)</span></label>
+            </li>
+          </ul>
+        </nav>
+        <section>
+          <div class="tab1">
+            <h2>Hi <%= @user.first_name %>! Welcome to your dashboard</h2><br>
             <% if @scheduled %>
-              <table>
-                <tr>
-                  <th>Date</th>
-                  <th>Name</th>
-                  <th>Your Guide</th>
-                  <th></th>
-                </tr>
-                <% @scheduled.each do |x| %>
-                  <tr>
-                    <td><%= x.tour_date.strftime('%B %e, %Y') %></td>
-                    <td><%= x.tour.name %></td>
-                    <td><%= x.provider.name %></td>
-                    <td><%= image_tag x.provider.profile_pic.url (:small) %></td>
-                  </tr>
-                <% end %>
-              </table>
+            <p>You have <b><%= @scheduled.count %></b> scheduled tours. Click the tabs above to review your scheduled and pending tours.</p>
+            <% end %>
+            <% if @request %>
+            <p>You also have <b><%= @request.count %></b> tours pending. We'll let you know when your tour guide responds.</p>
             <% end %>
           </div>
-        </div>
-        <div class="tab3">
-          <h4>Your Pending Tour Requests</h4>
-          <div id="upcoming_tours">
-            <% if @request%>
-              <table>
-                <tr>
-                  <th>Date</th>
-                  <th>Name</th>
-                  <th>Your Guide</th>
-                  <th></th>
-                </tr>
-                <% @request.each do |x| %>
+          <div class="tab2">
+            <h4>Your Scheduled Tours</h4>
+            <div id="scheduled_tours">
+              <% if @scheduled %>
+                <table>
                   <tr>
-                    <td><%= x.tour_date.strftime('%B %e, %Y') %></td>
-                    <td><%= x.tour.name %></td>
-                    <td><%= x.provider.name %>
-                    <%= image_tag x.provider.profile_pic.url (:small) %></td>
+                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Your Guide</th>
+                    <th></th>
                   </tr>
-                <% end %>
-              </table>
-            <% end %>
+                  <% @scheduled.each do |x| %>
+                    <tr>
+                      <td><%= x.tour_date.strftime('%B %e, %Y') %></td>
+                      <td><%= x.tour.name %></td>
+                      <td><%= x.provider.name %></td>
+                      <td><%= image_tag x.provider.profile_pic.url (:small) %></td>
+                    </tr>
+                  <% end %>
+                </table>
+              <% end %>
+            </div>
           </div>
-        </div>
-      </section>
+          <div class="tab3">
+            <h4>Your Pending Tour Requests</h4>
+            <div id="upcoming_tours">
+              <% if @request%>
+                <table>
+                  <tr>
+                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Your Guide</th>
+                    <th></th>
+                  </tr>
+                  <% @request.each do |x| %>
+                    <tr>
+                      <td><%= x.tour_date.strftime('%B %e, %Y') %></td>
+                      <td><%= x.tour.name %></td>
+                      <td><%= x.provider.name %>
+                      <%= image_tag x.provider.profile_pic.url (:small) %></td>
+                    </tr>
+                  <% end %>
+                </table>
+              <% end %>
+            </div>
+          </div>
+        </section>
+      </div>
+
+    <div id="find_tour">
+      <button class="btn btn-warning btn-sm" id="find_tour" type="button" action="/tour" name="find_tour"><a href="/tour">Find a Tour</a></button>
     </div>
   </div>
-
-  <div id="find_tour">
-    <button class="btn btn-warning btn-sm" id="find_tour" type="button" action="/tour" name="find_tour"><a href="/tour">Find a Tour</a></button>
-  </div>
-
 </div>

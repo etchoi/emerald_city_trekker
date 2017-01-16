@@ -1,0 +1,140 @@
+@import 'styling_variables';
+
+#tour_show_container {
+  width: 100%;
+}
+
+#tour_info {
+  margin-top: 10%;
+  border: $general_border;
+  border-radius: 5px;
+  padding: 0;
+  background-color: $background_color;
+  box-shadow: $box_shadow;
+
+    #tour_show_heading {
+      width: 100%;
+      padding: 1%;
+      text-align: center;
+      background-color: #FFA726;
+      border-bottom: $general_border;
+    }
+    #tour_content {
+      padding: 5%;
+    }
+    #tour_info img {
+      display: inline-block;
+      vertical-align: top;
+    }
+    #tour_description {
+      max-width: 60%;
+      display: inline-block;
+      margin-left: 5%;
+    }
+    #tour_description p {
+      font-size: 1em;
+    }
+    #tour_itinerary {
+      margin-top: 5%;
+    }
+}
+
+#tour_request_tour {
+  padding: 0 5% 3% 0;
+  text-align: right;
+}
+#request_login_msg {
+  text-align: center;
+}
+#request_login_form {
+  padding: 0 0 5% 5%;
+  text-align: right;
+}
+
+#tour_provider {
+  position: relative;
+  margin-top: 5%;
+  border: $general_border;
+  border-radius: 5px;
+  padding: 0;
+  background-color: $background_color;
+  box-shadow: $box_shadow;
+
+    #tour_guide_heading {
+      width: 100%;
+      padding: 1%;
+      text-align: center;
+      background-color: #80CBC4;
+      border-bottom: $general_border;
+    }
+
+    #guide_profile {
+      padding: 5%;
+    }
+    #guide_profile img {
+      max-width: 80%;
+    }
+    #meet_guide {
+      padding-top: 4%;
+    }
+    #tour_provider p {
+      font-size: 1em;
+      margin-top: 5%;
+    }
+    #tour_guide_heading {
+      padding-top: 5%;
+    }
+}
+
+
+
+#tour_reviews {
+  margin-top: 5%;
+  border: $general_border;
+  border-radius: 5px;
+  float: right;
+  padding: 0;
+  background-color: $background_color;
+  min-height: 320px;
+  box-shadow: $box_shadow;
+
+    #tour_review_heading {
+      width: 100%;
+      padding: 1%;
+      text-align: center;
+      background-color: #78909C;
+      border-bottom: $general_border;
+    }
+
+    #review_each {
+      margin-top: 4%;
+      padding: 1% 0 2% 0;
+      border-bottom: $general_border;
+      min-width: 80%;
+    }
+        #review_star5 {
+          max-width: 150px;
+        }
+        #review_star4 {
+          max-width: 120px;
+        }
+        #review_star3 {
+          max-width: 90px;
+        }
+        #review_star2 {
+          max-width: 60px;
+        }
+        #review_star1 {
+          max-width: 30px;
+        }
+        #review_each h5 {
+          margin-top: 5%;
+        }
+        #review_each p {
+          font-size: 1em;
+        }
+    #no_review_warning {
+      text-align: center;
+      margin-top: 15%;
+    }
+}

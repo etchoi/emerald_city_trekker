@@ -1,39 +1,26 @@
-<nav id="navbar_tour" class="navbar navbar-default navbar-fixed-top col-md-12">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/session">
-        <%= image_tag('logo.jpg') %>
-      </a>
-    </div>
-    <ul id="navbar_links" class="nav navbar-nav navbar-right">
-      <li><a href="/user/<%= session[:user]%>">Dashboard</a></li> |
-      <li><a href="/">Home</a></li> |
-      <li><a href="/user/destroy">Logout</a></li>
-    </ul>
-  </div>
-</nav>
+<%= render 'layouts/navbar' %>
 
-<div id="login_container" class="col-md-12 col-md-offset-2">
+<div id="login_container" class="col-md-12">
   <% (notice.kind_of?(Array) ? notice : [notice]).each do |x| %>
      <p><b><%= x %></b></p>
   <% end %>
-  <div id="user_register" class="col-md-8">
+  <div id="user_register" class="col-md-6 col-md-offset-1">
     <h4>Register here!</h4>
-     <%= simple_form_for @user, :url => '/user', :html => {:multipart => true} do |f| %>
-        <%= f.input :user_name, placeholder: 'User name', label: false %>
-        <%= f.input :first_name, placeholder: 'First name: ', label: false %>
-        <%= f.input :city, placeholder: 'Home city and country: ', label: false %>
+     <%= simple_form_for @user, :url => '/user', html: {multipart: true, class: 'form-input'} do |f| %>
+        <%= f.input :user_name, placeholder: 'User name', label: false, input_html: { class: 'form-control'} %>
+        <%= f.input :first_name, placeholder: 'First name: ', label: false, input_html: { class: 'form-control'} %>
+        <%= f.input :city, placeholder: 'Home city and country: ', label: false, input_html: { class: 'form-control'} %>
         <%= f.country_select(:country, {selected: @user.country}, {class: "form-control"}) %>
-        <%= f.input :email, placeholder: 'Email: ', label: false %>
-        <%= f.input :about, placeholder: 'About me: ', label: false %>
-        <%= f.input :password, placeholder: 'Password: ', label: false, input_html: { maxlength: 20 } %>
-        <%= f.input :password_confirmation, placeholder: 'Confirm Password: ', label: false %>
-        <%= f.file_field :profile_pic %><br>
+        <%= f.input :email, placeholder: 'Email: ', label: false, input_html: { class: 'form-control'} %>
+        <%= f.input :about, placeholder: 'About me: ', label: false, input_html: { class: 'form-control'} %>
+        <%= f.input :password, placeholder: 'Password: ', label: false, input_html: { maxlength: 20 }, input_html: { class: 'form-control'} %>
+        <%= f.input :password_confirmation, placeholder: 'Confirm Password: ', label: false, input_html: { class: 'form-control'} %>
+        <%= f.file_field :profile_pic, input_html: { class: 'form-control'} %><br>
         <%= f.button :submit, 'Register', class: 'btn btn-primary' %>
      <% end %>
   </div>
 
-  <div id="user_login" class="col-md-6  col-md-offset-1">
+  <div id="user_login" class="col-md-4">
     <h4>Already Registered? Login Here!</h4>
     <form class="form-inline" action="/user/user_login" method="post">
       <div class="form-group">

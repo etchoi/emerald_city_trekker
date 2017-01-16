@@ -8,7 +8,7 @@ class ReviewController < ApplicationController
 
   def new
     @provider_profile = Provider.joins(:tour).find(params[:id])
-    # @provider_rating = Review.joins(:user).where(guide:params[:id])
+    @provider_rating = Review.joins(:user).where(guide:params[:id])
   end
 
   def edit
@@ -20,7 +20,7 @@ class ReviewController < ApplicationController
       if @review.save
         session[:provider] = @review.id
         format.html { redirect_to "/tour", notice: 'Thanks for the review!' }
-          format.json { render :show, status: :created, location: "/tour"}
+        format.json { render :show, status: :created, location: "/tour"}
       else
         format.html { redirect_to '/review/new', notice: @review.errors.full_messages}
         format.json { render json: @review.errors, status: :unprocessable_entity }

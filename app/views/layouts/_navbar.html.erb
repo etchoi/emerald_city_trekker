@@ -1,0 +1,19 @@
+<nav id="navbar_tour" class="navbar navbar-default navbar-fixed-top col-md-12">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/session">
+        <%= image_tag('logo.jpg') %>
+      </a>
+    </div>
+    <ul id="navbar_links" class="nav navbar-nav navbar-right">
+      <li><a href="/">Home</a></li> |
+      <li><a href="/tour">All tours</a></li> |
+      <% if session[:user] != nil %>
+      <li><a href="/user/<%= session[:user]%>">Dashboard</a></li> |
+        <li><a href="/user/destroy">Logout</a></li>
+      <% else %>
+        <li><a href="/user">Login</a></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>

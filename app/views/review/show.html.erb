@@ -1,23 +1,11 @@
-<nav id="navbar_tour" class="navbar navbar-default navbar-fixed-top col-md-12">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/session">
-        <%= image_tag('logo.jpg') %>
-      </a>
-    </div>
-    <ul id="navbar_links" class="nav navbar-nav navbar-right">
-      <li><a href="/user/<%= session[:user]%>">Dashboard</a></li> |
-      <li><a href="/">Home</a></li> |
-      <% if session[:user] != nil %>
-        <li><a href="/user/destroy">Logout</a></li>
-      <% else %>
-        <li><a href="/user">Login</a></li>
-      <% end %>
-    </ul>
-  </div>
-</nav>
+<%= render 'layouts/navbar' %>
 
 <div class="container">
+  <% (notice.kind_of?(Array) ? notice : [notice]).each do |x| %>
+    <div class="alert alert-danger" role="alert">
+      <p><%= x %></p>
+    </div>
+  <% end %>
   <div id="rating_profile">
     <!-- <h3>How was the <%= @tour.name %> tour</h3> -->
     <span id="rating_pic"><%= image_tag @tour.tour_pic.url (:small) %></span>
@@ -27,28 +15,25 @@
       <%= image_tag @tour.provider.profile_pic.url (:small) %>
       <%= @tour.provider.name %>
     </div>
+    <div id="review">
+      <form action="/review" method="post">
+        <div class="form-group">
+          <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+          <input type="hidden" name="rating[provider]" value="<%= @tour.provider.id %>">
+          <input type="hidden" name="rating[tour]" value="<%= @tour.id %>">
+          <select name="rating[rating]" class="form-control">
+            <option value="">How would you rate your tour?</option>
+            <option value="5">	&#9733;	&#9733;	&#9733;	&#9733;	&#9733;</option>
+            <option value="4">	&#9733;	&#9733;	&#9733;	&#9733;</option>
+            <option value="3">	&#9733;	&#9733;	&#9733;</option>
+            <option value="2">	&#9733;	&#9733;</option>
+            <option value="1">	&#9733;</option>
+          </select><br>
+          <textarea id="rating_comment" name="rating[comment]" rows="8" cols="40" placeholder="Tell us more about <%=@tour.name%>" class="form-control"></textarea><br>
+          <button type="submit" class="btn btn-success-outline btn-sm">Rate</button>
+        </div>
+      </form>
+    </div>
+
   </div>
-
-  <% (notice.kind_of?(Array) ? notice : [notice]).each do |x| %>
-     <p><b><%= x %></b></p>
-  <% end %>
-
-  <div id="review">
-    <form action="/review" method="post">
-      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-      <input type="hidden" name="rating[provider]" value="<%= @tour.provider.id %>">
-      <input type="hidden" name="rating[tour]" value="<%= @tour.id %>">
-      <select name="rating[rating]">
-        <option value="">How would you rate your tour?</option>
-        <option value="5">	&#9733;	&#9733;	&#9733;	&#9733;	&#9733;</option>
-        <option value="4">	&#9733;	&#9733;	&#9733;	&#9733;</option>
-        <option value="3">	&#9733;	&#9733;	&#9733;</option>
-        <option value="2">	&#9733;	&#9733;</option>
-        <option value="1">	&#9733;</option>
-      </select><br>
-      <textarea id="rating_comment" name="rating[comment]" rows="8" cols="40" placeholder="Tell us more about <%=@tour.name%>"></textarea><br>
-      <button type="submit" class="btn btn-success-outline btn-sm">Rate</button>
-    </form>
-  </div>
-
 </div>

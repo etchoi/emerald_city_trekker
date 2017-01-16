@@ -9,7 +9,7 @@ class TourController < ApplicationController
 
   def show
     @tour = Tour.joins(:provider).find(params[:id])
-    @review = Review.joins(:user).where(tour_id:params[:id])
+    @review = Review.where(tour_id:params[:id])
   end
 
   def new

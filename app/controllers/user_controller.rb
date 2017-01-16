@@ -28,7 +28,7 @@ class UserController < ApplicationController
         format.html { redirect_to "/user/#{@user.id}"}
         format.json { render :show, status: :created, location: "/user/#{@user.id}"}
       else
-        format.html { redirect_to '/',   notice: 'Your email and/or password were incorrect. Get your life together and try again'}
+        format.html { redirect_to '/',   notice: 'Your email and/or password do not match our records. Please try again.'}
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end

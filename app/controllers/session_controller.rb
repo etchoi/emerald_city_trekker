@@ -21,7 +21,7 @@ class SessionController < ApplicationController
         format.html { redirect_to "/provider"}
         format.json { render :show, status: :created, location: "/provider"}
       else
-        format.html { redirect_to '/provider/new',   notice: 'Your email and/or password were incorrect. Get your life together and try again'}
+        format.html { redirect_to '/provider/new',   notice: 'Your email and/or password were incorrect. Try again'}
         format.json { render json: @provider.errors, status: :unprocessable_entity }
       end
     end

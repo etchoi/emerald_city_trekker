@@ -1,31 +1,37 @@
 // Place all the styles related to the User controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'styling_variables';
 
 #user_container {
   width: 80%;
   height: 100%;
-  margin: 0 auto;
-  margin-top: 20%;
-  background-color: #F7F7F7;
-  border: 1px solid silver;
+  margin: 15% 0 10% 10%;
+  border: $general_border;
+  background: $background_color;
   padding: 20px;
 }
+
 #login_container {
-  margin-top: 20%;
+  margin: 10% 0 10% 0;
 }
   #login_container input {
     text-align: left;
     margin: 4% 0 4% 0;
   }
 #user_register {
-  width: 300px;
+  padding: 5%;
+  border-radius: 5px;
   display: inline-block;
   text-align: left;
+  background: $background_color;
 }
 #user_login {
   display: inline-block;
-  vertical-align: top;
+  border-radius: 5px;
+  background: $background_color;
+  margin-left: 1%;
+  padding: 5%;
 }
   #user_login input {
     text-align: left;
@@ -125,7 +131,7 @@ h1 {
         font-family: "Raleway";
         float: left;
         padding: 15px 25px;
-        border: 1px solid #ddd;
+        border: $general_border;
         border-bottom: 0;
         background: $unactiveColor;
         color: #444;
@@ -147,7 +153,7 @@ h1 {
     div {
       padding: 20px;
       width: 100%;
-      border: 1px solid #ddd;
+      border: $general_border;
       background: #fff;
       line-height: 1.5em;
       letter-spacing: 0.3px;
